@@ -122,8 +122,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\CalendarRepository.cs" />
+    <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\AppointmentService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="user.cs">
       <DependentUpon>Model1.tt</DependentUpon>

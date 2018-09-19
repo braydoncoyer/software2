@@ -11,7 +11,7 @@ namespace Software2.Repository
         U04uzGEntities _db = new U04uzGEntities();
         public user findUser(int id)
         {
-            return _db.users.Find(id);
+            return _db.users.FirstOrDefault(p => p.userId == id);
         }
 
         public user findByUsername(String username)
