@@ -1,0 +1,42 @@
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\Software2.exe.config
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\Software2.exe
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\Software2.pdb
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\EntityFramework.dll
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\MySql.Data.dll
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\EntityFramework.xml
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\MySql.Data.xml
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\MySql.Data.Entity.EF6.xml
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.csprojResolveAssemblyReference.cache
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.Form1.resources
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.Properties.Resources.resources
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.csproj.GenerateResource.Cache
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.exe
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.pdb
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\SimpleInjector.dll
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\bin\Debug\SimpleInjector.xml
+C:\Users\Braydon\Documents\Visual Studio 2017\Projects\Software2\Software2\obj\Debug\Software2.Main.resources
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\Software2.exe.config
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\Software2.exe
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\Software2.pdb
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\EntityFramework.dll
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\MySql.Data.dll
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\SimpleInjector.dll
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\EntityFramework.xml
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\MySql.Data.xml
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\MySql.Data.Entity.EF6.xml
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\bin\Debug\SimpleInjector.xml
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.csprojAssemblyReference.cache
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.Form1.resources
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.Main.resources
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.Properties.Resources.resources
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.csproj.GenerateResource.cache
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.csproj.CoreCompileInputs.cache
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.csproj.CopyComplete
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.exe
+C:\Users\dcoyer\Desktop\MySQLEntityConnector\Software2\obj\Debug\Software2.pdb
