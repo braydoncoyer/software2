@@ -14,6 +14,8 @@ namespace Software2.Forms
     public partial class AddCustomer : Form
     {
         UserService _userSerivce = new UserService();
+        CustomerService _customerService = new CustomerService();
+        AddressService _addressService = new AddressService();
 
         public AddCustomer()
         {
@@ -28,17 +30,19 @@ namespace Software2.Forms
         private void button1_Click(object sender, EventArgs e)
         {
 
-            var customer = new customer();
-            Random rnd = new Random();
-            customer.customerName = nameTextBox.Text;
-            customer.customerId = rnd.Next(2, 900);
-            customer.addressId = address1TextBox.Text;
-            customer.active = true;
-            customer.createdBy = "braydon";
-            customer.createDate = DateTime.Now;
-            customer.lastUpdate = DateTime.Now;
-            customer.lastUpdateBy = "braydon";
-            _userSerivce.;
+            //var customer = new customer();
+            //customer.customerName = nameTextBox.Text;
+            //var address = _addressService.createAddress(address1TextBox.Text, address2TextBox.Text, "1", zipCodeTextBox.Text, phoneNumberTextBox.Text);
+            //customer.active = true;
+            //customer.createdBy = "braydon";
+            //customer.createDate = DateTime.Now;
+            //customer.lastUpdate = DateTime.Now;
+            //customer.lastUpdateBy = "braydon";
+            //_customerService.CreateCustomer(customer);
+            //Console.WriteLine("CreatedCustomer");
+
+            var customer = _customerService.findCustomerById(13);
+            Console.WriteLine(customer.customerName);
         }
     }
 }

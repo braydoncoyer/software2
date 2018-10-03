@@ -21,6 +21,8 @@ namespace Software2.Repository
 
         public void addUser(user user)
         {
+            var maxId = _db.users.Max(id => id.userId);
+            user.userId = maxId;
             _db.users.Add(user);
             _db.SaveChanges();
         }

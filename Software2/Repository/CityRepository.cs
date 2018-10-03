@@ -42,6 +42,8 @@ namespace Software2.Repository
 
         public city createCity(city city)
         {
+            var maxId = _db.cities.Max(id => id.cityId);
+            city.cityId = maxId;
             _db.cities.Add(city);
             _db.SaveChanges();
             return _db.cities.FirstOrDefault(c => c.cityId == city.cityId);

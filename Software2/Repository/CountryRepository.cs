@@ -46,6 +46,8 @@ namespace Software2.Repository
 
         public country createCountry(country country)
         {
+            var maxId = _db.countries.Max(id => id.countryId);
+            country.countryId = maxId;
             _db.countries.Add(country);
             _db.SaveChanges();
             return _db.countries.FirstOrDefault(c => c.countryId == country.countryId);

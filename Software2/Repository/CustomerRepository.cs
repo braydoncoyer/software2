@@ -35,6 +35,8 @@ namespace Software2.Repository
 
         public customer CreateCustomer(customer customer)
         {
+            var maxId = _db.customers.Max(id => id.customerId);
+            customer.customerId = 13;
             _db.customers.Add(customer);
             _db.SaveChanges();
             return _db.customers.FirstOrDefault(c => c.customerId == customer.customerId);

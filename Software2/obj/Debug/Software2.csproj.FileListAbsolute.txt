@@ -60,3 +60,4 @@ C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Prope
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.csproj.GenerateResource.Cache
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.exe
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.pdb
+C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Forms.AddCustomer.resources

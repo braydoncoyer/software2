@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using Software2.Forms;
 
 namespace Software2
 {
@@ -34,7 +35,7 @@ namespace Software2
             try
             {
                 _userSerivce.login(usernameTextBox.Text, passwordTextBox.Text);
-                Main form = new Main();
+                AddCustomer form = new AddCustomer();
                 this.Hide();
                 form.Show();
                 Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);

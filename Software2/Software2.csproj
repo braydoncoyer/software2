@@ -86,6 +86,12 @@
     <Compile Include="customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,15 +127,23 @@
     <Compile Include="reminder.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\CalendarRepository.cs" />
+    <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\AppointmentService.cs" />
+    <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

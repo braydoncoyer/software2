@@ -33,7 +33,7 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.address1TextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.address2TextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -90,12 +90,12 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Address 1*";
             // 
-            // textBox1
+            // address2TextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 224);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(441, 20);
-            this.textBox1.TabIndex = 6;
+            this.address2TextBox.Location = new System.Drawing.Point(67, 224);
+            this.address2TextBox.Name = "address2TextBox";
+            this.address2TextBox.Size = new System.Drawing.Size(441, 20);
+            this.address2TextBox.TabIndex = 6;
             // 
             // label4
             // 
@@ -185,7 +185,7 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // AddUser
+            // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -199,14 +199,14 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.address2TextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.address1TextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "AddUser";
+            this.Name = "AddCustomer";
             this.Text = "AddUser";
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.ResumeLayout(false);
@@ -221,7 +221,7 @@
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox address1TextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox address2TextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Label label5;
