@@ -33,10 +33,17 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
-        public customer CreateCustomer(customer customer)
+        public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy)
         {
+            var customer = new customer();
+            customer.customerName = customerName;
+            customer.active = active;
+            customer.createDate = createDate;
+            customer.createdBy = createdBy;
+            customer.lastUpdate = lastUpdate;
+            customer.lastUpdateBy = lastUpdateBy;
             var maxId = _db.customers.Max(id => id.customerId);
-            customer.customerId = 13;
+            customer.customerId = maxId + 1;
             _db.customers.Add(customer);
             _db.SaveChanges();
             return _db.customers.FirstOrDefault(c => c.customerId == customer.customerId);

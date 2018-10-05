@@ -37,9 +37,9 @@ namespace Software2.Services
            _cr.DeleteCustomer(customer);
         }
 
-        public customer CreateCustomer(customer customer)
+        public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy)
         {
-            return _cr.CreateCustomer(customer);
+            return _cr.CreateCustomer(customerName, active, createdBy, createDate, lastUpdate, lastUpdateBy);
         }
     }
 }

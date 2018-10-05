@@ -16,6 +16,7 @@ namespace Software2.Forms
         UserService _userSerivce = new UserService();
         CustomerService _customerService = new CustomerService();
         AddressService _addressService = new AddressService();
+        CityService _cityService = new CityService();
 
         public AddCustomer()
         {
@@ -29,20 +30,9 @@ namespace Software2.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            //var customer = new customer();
-            //customer.customerName = nameTextBox.Text;
-            //var address = _addressService.createAddress(address1TextBox.Text, address2TextBox.Text, "1", zipCodeTextBox.Text, phoneNumberTextBox.Text);
-            //customer.active = true;
-            //customer.createdBy = "braydon";
-            //customer.createDate = DateTime.Now;
-            //customer.lastUpdate = DateTime.Now;
-            //customer.lastUpdateBy = "braydon";
-            //_customerService.CreateCustomer(customer);
-            //Console.WriteLine("CreatedCustomer");
-
-            var customer = _customerService.findCustomerById(13);
-            Console.WriteLine(customer.customerName);
+            _customerService.CreateCustomer(nameTextBox.Text, true, "braydon", DateTime.Now, DateTime.Now, "braydon");
+            _cityService.createCity(cityTextBox.Text, "1", DateTime.Now, DateTime.Now, "braydon");
+            _addressService.createAddress(address1TextBox.Text, address2TextBox.Text, "1", zipCodeTextBox.Text, phoneNumberTextBox.Text);
         }
     }
 }

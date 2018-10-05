@@ -40,10 +40,17 @@ namespace Software2.Repository
             deleteCity(city);
         }
 
-        public city createCity(city city)
+        public city createCity(string cityName, string countryId, DateTime createdDate, DateTime lastUpdate, string lastUpdateBy)
         {
+            var city = new city();
             var maxId = _db.cities.Max(id => id.cityId);
-            city.cityId = maxId;
+            city.cityId = maxId + 1;
+            city.city1 = cityName;
+            city.countryId = 999;
+            city.createDate = DateTime.Now;
+            city.createdBy = "braydon";
+            city.lastUpdate = DateTime.Now;
+            city.lastUpdateBy = lastUpdateBy;
             _db.cities.Add(city);
             _db.SaveChanges();
             return _db.cities.FirstOrDefault(c => c.cityId == city.cityId);

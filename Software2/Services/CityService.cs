@@ -38,9 +38,9 @@ namespace Software2.Services
             _cr.deleteCity(city);
         }
 
-        public city createCity(city city)
+        public city createCity(string cityName, string countryId, DateTime createdDate, DateTime lastUpdate, string lastUpdateBy)
         {
-            return _cr.createCity(city);
+            return _cr.createCity(cityName, countryId, createdDate, lastUpdate, lastUpdateBy);
         }
 
     }
