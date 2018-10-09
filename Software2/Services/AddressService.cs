@@ -17,6 +17,11 @@ namespace Software2.Services
                 _cr = new AddressRepository();
             }
 
+            public address findByAddressNameAndCityID(string address1, string address2, int cityID)
+            {
+            return _cr.findByAddressNameAndCityID(address1, address2, cityID);
+            }
+
             public address findAddressById(int id)
             {
                 return _cr.findByAddressId(id);
@@ -38,7 +43,7 @@ namespace Software2.Services
                 _cr.deleteAddress(address);
             }
 
-            public address createAddress(string address1, string address2, string cityId, string zipcode, string phoneNumber)
+            public address createAddress(string address1, string address2, int cityId, string zipcode, string phoneNumber)
             {
                 return _cr.createAddress(address1, address2, cityId, zipcode, phoneNumber);
             }

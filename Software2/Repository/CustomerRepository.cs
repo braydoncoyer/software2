@@ -8,10 +8,12 @@ namespace Software2.Repository
 {
     public class CustomerRepository
     {
+        private string username;
         U04uzGEntities _db;
 
-        public CustomerRepository()
+        public CustomerRepository(string username)
         {
+            this.username = username;
             _db = new U04uzGEntities();
         }
 
@@ -33,7 +35,7 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
-        public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy)
+        public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy, int addressID)
         {
             var customer = new customer();
             customer.customerName = customerName;
@@ -44,6 +46,7 @@ namespace Software2.Repository
             customer.lastUpdateBy = lastUpdateBy;
             var maxId = _db.customers.Max(id => id.customerId);
             customer.customerId = maxId + 1;
+            customer.addressId = addressID;
             _db.customers.Add(customer);
             _db.SaveChanges();
             return _db.customers.FirstOrDefault(c => c.customerId == customer.customerId);

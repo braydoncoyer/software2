@@ -21,6 +21,11 @@ namespace Software2.Services
             return _cr.findAllCountries();
         }
 
+        public country findByName(string name)
+        {
+            return _cr.findByName(name);
+        }
+
         public country findByCountryId(int id)
         {
             return _cr.findByCountryId(id);
@@ -41,9 +46,9 @@ namespace Software2.Services
             _cr.deleteCountryById(id);
         }
 
-        public country createCountry(country country)
+        public country createCountry(string country, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdatedBy)
         {
-            return _cr.createCountry(country);
+            return _cr.createCountry(country, createdBy, createDate, lastUpdate, lastUpdatedBy);
         }
     }
 }

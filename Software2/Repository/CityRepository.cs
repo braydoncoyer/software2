@@ -15,6 +15,18 @@ namespace Software2.Repository
         {
             _db = new U04uzGEntities();
         }
+        public city findByCityName(string name, int countryID)
+        {
+            try
+            {
+                return _db.cities.Where(city => city.city1 == name && city.countryId == countryID).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                // no city found.
+                return null;
+            }
+        }
 
         public city findByCityId(int id)
         {
@@ -40,13 +52,13 @@ namespace Software2.Repository
             deleteCity(city);
         }
 
-        public city createCity(string cityName, string countryId, DateTime createdDate, DateTime lastUpdate, string lastUpdateBy)
+        public city createCity(string cityName, int countryId, DateTime createdDate, DateTime lastUpdate, string lastUpdateBy)
         {
             var city = new city();
             var maxId = _db.cities.Max(id => id.cityId);
             city.cityId = maxId + 1;
             city.city1 = cityName;
-            city.countryId = 999;
+            city.countryId = countryId;
             city.createDate = DateTime.Now;
             city.createdBy = "braydon";
             city.lastUpdate = DateTime.Now;

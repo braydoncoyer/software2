@@ -13,10 +13,17 @@ namespace Software2.Forms
 {
     public partial class AddCustomer : Form
     {
-        UserService _userSerivce = new UserService();
-        CustomerService _customerService = new CustomerService();
+        private string username;
+        public void setUsername(string username)
+        {
+            this.username = username;
+            _customerService = new CustomerService(username);
+        }
+        //UserService _userSerivce = new UserService();
+        CustomerService _customerService;
         AddressService _addressService = new AddressService();
         CityService _cityService = new CityService();
+        CountryService _countryService = new CountryService();
 
         public AddCustomer()
         {
@@ -30,9 +37,25 @@ namespace Software2.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _customerService.CreateCustomer(nameTextBox.Text, true, "braydon", DateTime.Now, DateTime.Now, "braydon");
-            _cityService.createCity(cityTextBox.Text, "1", DateTime.Now, DateTime.Now, "braydon");
-            _addressService.createAddress(address1TextBox.Text, address2TextBox.Text, "1", zipCodeTextBox.Text, phoneNumberTextBox.Text);
+
+            var findCountry = _countryService.findByName(countryTextbox.Text);
+            if (findCountry == null)
+            {
+                _countryService.createCountry(countryTextbox.Text, username, DateTime.Now, DateTime.Now, username);
+                findCountry = _countryService.findByName(countryTextbox.Text);
+            }
+
+            var findCity = _cityService.findByCityName(cityTextBox.Text, findCountry.countryId);
+            if (findCity == null)
+            {
+                _cityService.createCity(cityTextBox.Text, findCountry.countryId, DateTime.Now, DateTime.Now, username);
+                findCity = _cityService.findByCityName(cityTextBox.Text, findCountry.countryId);
+
+            }
+            _addressService.createAddress(address1TextBox.Text, address2TextBox.Text, findCity.cityId, zipCodeTextBox.Text, phoneNumberTextBox.Text);
+            var findAddress = _addressService.findByAddressNameAndCityID(address1TextBox.Text, address2TextBox.Text, findCity.cityId);
+
+            _customerService.CreateCustomer(nameTextBox.Text, true, username, DateTime.Now, DateTime.Now, username, findAddress.addressId);
         }
     }
 }

@@ -37,7 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.countryTextbox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -124,12 +124,12 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "City*";
             // 
-            // textBox2
+            // countryTextbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(315, 283);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(193, 20);
-            this.textBox2.TabIndex = 10;
+            this.countryTextbox.Location = new System.Drawing.Point(315, 283);
+            this.countryTextbox.Name = "countryTextbox";
+            this.countryTextbox.Size = new System.Drawing.Size(193, 20);
+            this.countryTextbox.TabIndex = 10;
             // 
             // label6
             // 
@@ -195,7 +195,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.phoneNumberTextBox);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.countryTextbox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.label5);
@@ -225,7 +225,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox countryTextbox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox phoneNumberTextBox;
         private System.Windows.Forms.Label label7;

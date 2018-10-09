@@ -17,6 +17,11 @@ namespace Software2.Services
             _cr = new CityRepository();
         }
 
+        public city findByCityName(string name, int countryID)
+        {
+            return _cr.findByCityName(name, countryID);
+        }
+
         public city findCustomerById(int id)
         {
             return _cr.findByCityId(id);
@@ -38,7 +43,7 @@ namespace Software2.Services
             _cr.deleteCity(city);
         }
 
-        public city createCity(string cityName, string countryId, DateTime createdDate, DateTime lastUpdate, string lastUpdateBy)
+        public city createCity(string cityName, int countryId, DateTime createdDate, DateTime lastUpdate, string lastUpdateBy)
         {
             return _cr.createCity(cityName, countryId, createdDate, lastUpdate, lastUpdateBy);
         }

@@ -19,6 +19,19 @@ namespace Software2.Repository
             return _db.countries.ToList();
         }
 
+        public country findByName(string name)
+        {
+            try
+            {
+                return _db.countries.FirstOrDefault(country => country.country1 == name);
+            }
+            catch (Exception ex)
+            {
+                // no country found
+                return null;
+            }
+        }
+
         public country findByCountryId(int id)
         {
             return _db.countries.Find(id);
@@ -44,13 +57,19 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
-        public country createCountry(country country)
+        public country createCountry(string country, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdatedBy)
         {
+            var newCountry = new country();
             var maxId = _db.countries.Max(id => id.countryId);
-            country.countryId = maxId;
-            _db.countries.Add(country);
+            newCountry.countryId = maxId + 1;
+            newCountry.country1 = country;
+            newCountry.createdBy = createdBy;
+            newCountry.createDate = createDate;
+            newCountry.lastUpdate = lastUpdate;
+            newCountry.lastUpdateBy = lastUpdatedBy;
+            _db.countries.Add(newCountry);
             _db.SaveChanges();
-            return _db.countries.FirstOrDefault(c => c.countryId == country.countryId);
+            return _db.countries.FirstOrDefault(c => c.countryId == newCountry.countryId);
         }
     }
 }

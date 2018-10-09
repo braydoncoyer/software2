@@ -11,8 +11,13 @@ namespace Software2.Services
 {
     public class UserService
     {
+        public string username { get; set; }
         CalendarRepository _repo = new CalendarRepository();
 
+        public UserService(string username)
+        {
+            this.username = username;
+        }
         public user findUser(int id)
         {
            var _user = _repo.findUser(id);

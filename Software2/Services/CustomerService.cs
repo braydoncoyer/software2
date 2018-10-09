@@ -9,11 +9,13 @@ namespace Software2.Services
 {
     public class CustomerService
     {
+        private string username;
         CustomerRepository _cr;
 
-        public CustomerService()
+        public CustomerService(string username)
         {
-            _cr = new CustomerRepository();
+            this.username = username;
+            _cr = new CustomerRepository(username);
         }
 
         public customer findCustomerById(int id)
@@ -37,9 +39,9 @@ namespace Software2.Services
            _cr.DeleteCustomer(customer);
         }
 
-        public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy)
+        public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy, int addressID)
         {
-            return _cr.CreateCustomer(customerName, active, createdBy, createDate, lastUpdate, lastUpdateBy);
+            return _cr.CreateCustomer(customerName, active, createdBy, createDate, lastUpdate, lastUpdateBy, addressID);
         }
     }
 }

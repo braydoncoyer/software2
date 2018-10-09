@@ -13,10 +13,13 @@ using Software2.Forms;
 
 namespace Software2
 {
+    public delegate void Callback(string username);
     public partial class Form1 : Form
     {
-        UserService _userSerivce = new UserService();
-
+        public Callback cb;
+        private string username;
+        UserService _userSerivce = new UserService("");
+        
         public Form1()
         {
             InitializeComponent();
@@ -35,9 +38,7 @@ namespace Software2
             try
             {
                 _userSerivce.login(usernameTextBox.Text, passwordTextBox.Text);
-                AddCustomer form = new AddCustomer();
-                this.Hide();
-                form.Show();
+                cb(usernameTextBox.Text);
                 Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
             }
             catch (Exception ex)

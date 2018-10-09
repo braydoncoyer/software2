@@ -17,7 +17,12 @@ namespace Software2.Repository
 
         public address findByAddressId(int id)
         {
-            return _db.addresses.FirstOrDefault(a => a.addressId == id);
+            return _db.addresses.Find(id);
+        }
+
+        public address findByAddressNameAndCityID(string address1, string address2, int cityID)
+        {
+            return _db.addresses.Where(address => address.address1 == address1 && address.address2 == address2 && address.cityId == cityID).FirstOrDefault();
         }
 
         public void updateAddress(address address)
@@ -33,14 +38,14 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
-        public address createAddress(string address1, string address2, string cityId, string zipcode, string phoneNumber)
+        public address createAddress(string address1, string address2, int cityId, string zipcode, string phoneNumber)
         {
             var address = new address();
             var maxId = _db.addresses.Max(id => id.addressId);
             address.addressId = maxId + 1;
             address.address1 = address1;
             address.address2 = address2;
-            address.cityId = int.Parse(cityId);
+            address.cityId = cityId;
             address.phone = phoneNumber;
             address.postalCode = zipcode;
             address.createDate = DateTime.Now;
