@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace Software2.Forms
 {
+    public delegate void Callback();
     public partial class AddCustomer : Form
     {
         private string username;
+        public Callback addCustomerCB;
         public void setUsername(string username)
         {
             this.username = username;
             _customerService = new CustomerService(username);
         }
-        //UserService _userSerivce = new UserService();
         CustomerService _customerService;
         AddressService _addressService = new AddressService();
         CityService _cityService = new CityService();
@@ -56,6 +57,12 @@ namespace Software2.Forms
             var findAddress = _addressService.findByAddressNameAndCityID(address1TextBox.Text, address2TextBox.Text, findCity.cityId);
 
             _customerService.CreateCustomer(nameTextBox.Text, true, username, DateTime.Now, DateTime.Now, username, findAddress.addressId);
+            addCustomerCB();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            addCustomerCB();
         }
     }
 }

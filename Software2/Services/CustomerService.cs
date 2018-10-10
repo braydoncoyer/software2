@@ -18,6 +18,11 @@ namespace Software2.Services
             _cr = new CustomerRepository(username);
         }
 
+        public List<customer> FindAllCustomers()
+        {
+            return _cr.FindAllCustomers();
+        }
+
         public customer findCustomerById(int id)
         {
             return _cr.findByCustomerId(id);

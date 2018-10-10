@@ -17,6 +17,11 @@ namespace Software2.Repository
             _db = new U04uzGEntities();
         }
 
+        public List<customer> FindAllCustomers()
+        {
+            return _db.customers.ToList();
+        }
+
         public customer findByCustomerId(int id)
         {
             return _db.customers.FirstOrDefault(c => c.customerId == id);

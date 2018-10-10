@@ -44,6 +44,7 @@
             this.zipCodeTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -177,19 +178,30 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(67, 440);
+            this.button1.Location = new System.Drawing.Point(67, 434);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(441, 36);
+            this.button1.Size = new System.Drawing.Size(441, 27);
             this.button1.TabIndex = 15;
             this.button1.Text = "Add Customer";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(67, 470);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(441, 27);
+            this.cancelButton.TabIndex = 16;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 520);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.zipCodeTextBox);
             this.Controls.Add(this.label8);
@@ -232,5 +244,6 @@
         private System.Windows.Forms.TextBox zipCodeTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cancelButton;
     }
 }
