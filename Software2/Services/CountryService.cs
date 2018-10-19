@@ -50,5 +50,10 @@ namespace Software2.Services
         {
             return _cr.createCountry(country, createdBy, createDate, lastUpdate, lastUpdatedBy);
         }
+
+        public List<country> findAll()
+        {
+            return _cr.findAll();
+        }
     }
 }

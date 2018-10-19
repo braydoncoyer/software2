@@ -71,5 +71,15 @@ namespace Software2.Repository
             _db.SaveChanges();
             return _db.countries.FirstOrDefault(c => c.countryId == newCountry.countryId);
         }
+
+        public List<country> findAll()
+        {
+            var countries = _db.countries.AsEnumerable();
+            if (countries == null)
+            {
+                return new List<country>();
+            }
+            return countries.ToList();
+        }
     }
 }

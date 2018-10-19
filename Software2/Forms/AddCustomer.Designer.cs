@@ -200,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 520);
+            this.ClientSize = new System.Drawing.Size(590, 520);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.zipCodeTextBox);

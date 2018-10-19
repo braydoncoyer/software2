@@ -42,21 +42,21 @@ namespace Software2.Forms
             var findCountry = _countryService.findByName(countryTextbox.Text);
             if (findCountry == null)
             {
-                _countryService.createCountry(countryTextbox.Text, username, DateTime.Now, DateTime.Now, username);
+                _countryService.createCountry(countryTextbox.Text, username, DateTime.Now.ToUniversalTime(), DateTime.Now.ToUniversalTime(), username);
                 findCountry = _countryService.findByName(countryTextbox.Text);
             }
 
             var findCity = _cityService.findByCityName(cityTextBox.Text, findCountry.countryId);
             if (findCity == null)
             {
-                _cityService.createCity(cityTextBox.Text, findCountry.countryId, DateTime.Now, DateTime.Now, username);
+                _cityService.createCity(cityTextBox.Text, findCountry.countryId, DateTime.Now.ToUniversalTime(), DateTime.Now.ToUniversalTime(), username);
                 findCity = _cityService.findByCityName(cityTextBox.Text, findCountry.countryId);
 
             }
             _addressService.createAddress(address1TextBox.Text, address2TextBox.Text, findCity.cityId, zipCodeTextBox.Text, phoneNumberTextBox.Text);
             var findAddress = _addressService.findByAddressNameAndCityID(address1TextBox.Text, address2TextBox.Text, findCity.cityId);
 
-            _customerService.CreateCustomer(nameTextBox.Text, true, username, DateTime.Now, DateTime.Now, username, findAddress.addressId);
+            _customerService.CreateCustomer(nameTextBox.Text, true, username, DateTime.Now.ToUniversalTime(), DateTime.Now.ToUniversalTime(), username, findAddress.addressId);
             addCustomerCB();
         }
 

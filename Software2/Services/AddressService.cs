@@ -47,5 +47,10 @@ namespace Software2.Services
             {
                 return _cr.createAddress(address1, address2, cityId, zipcode, phoneNumber);
             }
+
+        public IEnumerable<address> FindAll()
+        {
+            return _cr.FindAll();
+        }
     }
 }

@@ -59,13 +59,23 @@ namespace Software2.Repository
             city.cityId = maxId + 1;
             city.city1 = cityName;
             city.countryId = countryId;
-            city.createDate = DateTime.Now;
+            city.createDate = DateTime.Now.ToUniversalTime();
             city.createdBy = "braydon";
-            city.lastUpdate = DateTime.Now;
+            city.lastUpdate = DateTime.Now.ToUniversalTime();
             city.lastUpdateBy = lastUpdateBy;
             _db.cities.Add(city);
             _db.SaveChanges();
             return _db.cities.FirstOrDefault(c => c.cityId == city.cityId);
+        }
+
+        public List<city> findAll()
+        {
+            var cities = _db.cities.AsEnumerable();
+            if (cities == null)
+            {
+                return new List<city>();
+            }
+            return cities.ToList();
         }
     }
 }

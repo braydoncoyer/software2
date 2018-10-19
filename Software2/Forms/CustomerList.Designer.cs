@@ -30,7 +30,8 @@
         {
             this.customerGridView = new System.Windows.Forms.DataGridView();
             this.addCustomerButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.editCustomerButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customerGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,21 +52,33 @@
             this.addCustomerButton.Text = "Add Customer";
             this.addCustomerButton.UseVisualStyleBackColor = true;
             // 
-            // cancelButton
+            // editCustomerButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(13, 486);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(662, 38);
-            this.cancelButton.TabIndex = 2;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.editCustomerButton.Location = new System.Drawing.Point(13, 486);
+            this.editCustomerButton.Name = "editCustomerButton";
+            this.editCustomerButton.Size = new System.Drawing.Size(662, 38);
+            this.editCustomerButton.TabIndex = 2;
+            this.editCustomerButton.Text = "Edit Customer";
+            this.editCustomerButton.UseVisualStyleBackColor = true;
+            this.editCustomerButton.Click += new System.EventHandler(this.editCustomerButton_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 530);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(662, 38);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 538);
-            this.Controls.Add(this.cancelButton);
+            this.ClientSize = new System.Drawing.Size(687, 577);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.editCustomerButton);
             this.Controls.Add(this.addCustomerButton);
             this.Controls.Add(this.customerGridView);
             this.Name = "CustomerList";
@@ -80,6 +93,7 @@
 
         private System.Windows.Forms.DataGridView customerGridView;
         private System.Windows.Forms.Button addCustomerButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button editCustomerButton;
+        private System.Windows.Forms.Button button1;
     }
 }

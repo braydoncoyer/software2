@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Software2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace Software2.Repository
     public class AddressRepository
     {
         U04uzGEntities _db;
+        private CityRepository _cityRepository;
+        private CountryRepository _countryRepository;
 
         public AddressRepository()
         {
@@ -48,14 +51,48 @@ namespace Software2.Repository
             address.cityId = cityId;
             address.phone = phoneNumber;
             address.postalCode = zipcode;
-            address.createDate = DateTime.Now;
+            address.createDate = DateTime.Now.ToUniversalTime();
             address.createdBy = "braydon";
-            address.lastUpdate = DateTime.Now;
+            address.lastUpdate = DateTime.Now.ToUniversalTime();
             address.lastUpdateBy = "braydon";
 
             _db.addresses.Add(address);
             _db.SaveChanges();
             return _db.addresses.FirstOrDefault(a => a.addressId == address.addressId);
         }
+
+        public IEnumerable<AddressAggregate> FindAllAggregates()
+        {
+            var addresses = FindAll();
+            var cities = _cityRepository.findAll();
+            var countries = _countryRepository.findAll();
+            var addressAggregates = new List<AddressAggregate>();
+            foreach (var address in addresses)
+            {
+                var city = cities.FirstOrDefault(c => c.cityId == address.cityId);
+                var country = countries.FirstOrDefault(c => c.countryId == city.countryId);
+                addressAggregates.Add(new AddressAggregate()
+                {
+                    CityId = city.cityId,
+                    CityName = city.city1,
+                    CountryId = country.countryId,
+                    CountryName = country.country1,
+                    Address1 = address.address1,
+                    Address2 = address.address2,
+                    Phone = address.phone,
+                    PostalCode = address.postalCode,
+                    AddressId = address.addressId
+                });
+            }
+
+            return addressAggregates;
+        }
+
+        public IEnumerable<address> FindAll()
+        {
+            return _db.addresses.AsEnumerable();
+        }
+
+
     }
 }

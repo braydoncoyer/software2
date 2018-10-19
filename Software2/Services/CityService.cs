@@ -48,5 +48,10 @@ namespace Software2.Services
             return _cr.createCity(cityName, countryId, createdDate, lastUpdate, lastUpdateBy);
         }
 
+        public List<city> findAll()
+        {
+            return _cr.findAll();
+        }
+
     }
 }
