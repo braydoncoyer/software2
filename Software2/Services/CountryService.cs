@@ -51,6 +51,11 @@ namespace Software2.Services
             return _cr.createCountry(country, createdBy, createDate, lastUpdate, lastUpdatedBy);
         }
 
+        public void Add(country country)
+        {
+            _cr.Add(country);
+        }
+
         public List<country> findAll()
         {
             return _cr.findAll();

@@ -1,4 +1,5 @@
-﻿using Software2.Repository;
+﻿using Software2.Models;
+using Software2.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,19 @@ namespace Software2.Services
                 return _cr.findByAddressId(id);
             }
 
+            public address FindByAddressAndPostalCode(string address1, string address2, string postalCode)
+            {
+                return _cr.FindByAddressAndPostalCode(address1, address2, postalCode);
+            }
+
             public void updateAddress(address address)
             {
-                _cr.updateAddress(address);
+                _cr.update(address);
+            }
+
+            public void UpdateAddress(AddressAggregate addressAggregate)
+            {
+             _cr.UpdateAddress(addressAggregate);
             }
 
             public void deleteAddress(address address)
@@ -51,6 +62,11 @@ namespace Software2.Services
         public IEnumerable<address> FindAll()
         {
             return _cr.FindAll();
+        }
+
+        public void addNewAddress(AddressAggregate addressAggregate)
+        {
+            _cr.addNewAddress(addressAggregate);
         }
     }
 }

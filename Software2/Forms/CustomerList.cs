@@ -19,11 +19,14 @@ namespace Software2.Forms
         private List<customer> customers;
         public Callback cancelCB;
         private EditCustomer editCustomer;
+        private AddCustomer addCustomer;
 
 
         public CustomerList()
         {
             InitializeComponent();
+            addCustomer = new AddCustomer();
+            //editCustomer = new EditCustomer();
             customers = _customerService.FindAllCustomers();
             customerBindingSource.DataSource = customers.Select(c => new
             CustomerRow
@@ -70,6 +73,11 @@ namespace Software2.Forms
             //editCustomer = new EditCustomer(customerFromRow, )
             editCustomer.Show();
             this.Close();
+        }
+
+        private void addCustomerButton_Click(object sender, EventArgs e)
+        {
+            addCustomer.Show();
         }
     }
 }

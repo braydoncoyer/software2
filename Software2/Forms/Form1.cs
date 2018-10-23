@@ -17,7 +17,6 @@ namespace Software2
     public partial class Form1 : Form
     {
         public Callback cb;
-        private string username;
         UserService _userSerivce = new UserService("");
         
         public Form1()

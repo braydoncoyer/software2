@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Software2.Models
 {
-    class CustomerAggregate
+    public class CustomerAggregate
     {
         public int Id { get; set; }
         public int AddressId { get; set; }

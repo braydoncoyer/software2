@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Software2.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,10 +34,21 @@ namespace Software2.Repository
             return _db.cities.FirstOrDefault(c => c.cityId == id);
         }
 
+        public city findByNameAndCountryId(string name, int countryId)
+        {
+            var cities = findByCityName(name, countryId);
+            if (cities == null || _db.cities.Count() == 0)
+                throw new NotFoundException("City does not exist");
+            var foundCity = _db.cities.Where(city => city.countryId == countryId).FirstOrDefault();
+            if (foundCity == null)
+                throw new NotFoundException("City does not exist");
+            return foundCity;
+        }
+
         public void updateCity(city city)
         {
-            var updateCity = findByCityId(city.cityId);
-            updateCity = city;
+            var newCity = findByCityId(city.cityId);
+            newCity = city;
             _db.SaveChanges();
         }
 
@@ -66,6 +78,14 @@ namespace Software2.Repository
             _db.cities.Add(city);
             _db.SaveChanges();
             return _db.cities.FirstOrDefault(c => c.cityId == city.cityId);
+        }
+
+        public void Add(city city)
+        {
+            var maxId = _db.cities.Max(p => p.cityId);
+            city.cityId = maxId + 1;
+            _db.cities.Add(city);
+            _db.SaveChanges();
         }
 
         public List<city> findAll()

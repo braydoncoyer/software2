@@ -153,6 +153,9 @@
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidInputException.cs" />
+    <Compile Include="Exceptions\DataIntegrityViolationException.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\AppointmentService.cs" />
     <Compile Include="Services\CityService.cs" />

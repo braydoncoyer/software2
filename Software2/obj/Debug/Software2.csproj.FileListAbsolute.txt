@@ -63,3 +63,4 @@ C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.pdb
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Forms.AddCustomer.resources
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Forms.Home.resources
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Forms.CustomerList.resources
+C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Forms.EditCustomer.resources

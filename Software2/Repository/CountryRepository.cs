@@ -72,6 +72,14 @@ namespace Software2.Repository
             return _db.countries.FirstOrDefault(c => c.countryId == newCountry.countryId);
         }
 
+        public void Add(country country)
+        {
+            var maxId = _db.countries.Max(c => c.countryId);
+            country.countryId = maxId + 1;
+            _db.countries.Add(country);
+            _db.SaveChanges();
+        }
+
         public List<country> findAll()
         {
             var countries = _db.countries.AsEnumerable();

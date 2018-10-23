@@ -1,4 +1,5 @@
-﻿using Software2.Repository;
+﻿using Software2.Models;
+using Software2.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,13 +41,23 @@ namespace Software2.Services
 
         public void DeleteCustomerById(int id)
         {
-           var customer = _cr.findByCustomerId(id);
-           _cr.DeleteCustomer(customer);
+            var customer = _cr.findByCustomerId(id);
+            _cr.DeleteCustomer(customer);
         }
 
         public customer CreateCustomer(string customerName, Boolean active, string createdBy, DateTime createDate, DateTime lastUpdate, string lastUpdateBy, int addressID)
         {
             return _cr.CreateCustomer(customerName, active, createdBy, createDate, lastUpdate, lastUpdateBy, addressID);
         }
+
+        public void Add(CustomerAggregate customerAggregate)
+        {
+            _cr.Add(customerAggregate);
+        }
+
+        public IEnumerable<customer> FindAll()
+        {
+            return _cr.FindAll();
+        }
     }
-}
+    }
