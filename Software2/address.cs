@@ -14,6 +14,12 @@ namespace Software2
     
     public partial class address
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public address()
+        {
+            this.customers = new HashSet<customer>();
+        }
+    
         public int addressId { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
@@ -24,5 +30,9 @@ namespace Software2
         public string createdBy { get; set; }
         public System.DateTime lastUpdate { get; set; }
         public string lastUpdateBy { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customer> customers { get; set; }
+        public virtual city city { get; set; }
     }
 }

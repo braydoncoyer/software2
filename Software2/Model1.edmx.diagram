@@ -6,13 +6,16 @@
     <edmx:Diagrams>
       <Diagram DiagramId="41979a181a7b42b79fa947fa03886571" Name="Diagram1">
         <EntityTypeShape EntityType="U04uzGModel.address" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="U04uzGModel.appointment" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="U04uzGModel.appointment" Width="1.5" PointX="3.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="U04uzGModel.city" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="U04uzGModel.country" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="U04uzGModel.country" Width="1.5" PointX="6.375" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="U04uzGModel.customer" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="U04uzGModel.incrementtype" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="U04uzGModel.reminder" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="U04uzGModel.user" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="U04uzGModel.reminder" Width="1.5" PointX="8.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="U04uzGModel.user" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="U04uzGModel.customeraddress" />
+        <AssociationConnector Association="U04uzGModel.addresscity" />
+        <AssociationConnector Association="U04uzGModel.citycountry" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

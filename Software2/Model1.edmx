@@ -136,6 +136,8 @@
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
           <Property Name="lastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="U04uzGModel.customeraddress" FromRole="address" ToRole="customer" />
+          <NavigationProperty Name="city" Relationship="U04uzGModel.addresscity" FromRole="address" ToRole="city" />
         </EntityType>
         <EntityType Name="appointment">
           <Key>
@@ -166,6 +168,8 @@
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
           <Property Name="lastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="addresses" Relationship="U04uzGModel.addresscity" FromRole="city" ToRole="address" />
+          <NavigationProperty Name="country" Relationship="U04uzGModel.citycountry" FromRole="city" ToRole="country" />
         </EntityType>
         <EntityType Name="country">
           <Key>
@@ -177,6 +181,7 @@
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
           <Property Name="lastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cities" Relationship="U04uzGModel.citycountry" FromRole="country" ToRole="city" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -190,6 +195,7 @@
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
           <Property Name="lastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="address" Relationship="U04uzGModel.customeraddress" FromRole="customer" ToRole="address" />
         </EntityType>
         <EntityType Name="incrementtype">
           <Key>
@@ -233,7 +239,31 @@
           <EntitySet Name="incrementtypes" EntityType="Self.incrementtype" />
           <EntitySet Name="reminders" EntityType="Self.reminder" />
           <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="customeraddress" Association="U04uzGModel.customeraddress">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="address" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="addresscity" Association="U04uzGModel.addresscity">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="city" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="citycountry" Association="U04uzGModel.citycountry">
+            <End Role="city" EntitySet="cities" />
+            <End Role="country" EntitySet="countries" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="customeraddress">
+          <End Type="U04uzGModel.customer" Role="customer" Multiplicity="*" />
+          <End Type="U04uzGModel.address" Role="address" Multiplicity="1" />
+        </Association>
+        <Association Name="addresscity">
+          <End Type="U04uzGModel.address" Role="address" Multiplicity="*" />
+          <End Type="U04uzGModel.city" Role="city" Multiplicity="1" />
+        </Association>
+        <Association Name="citycountry">
+          <End Type="U04uzGModel.city" Role="city" Multiplicity="*" />
+          <End Type="U04uzGModel.country" Role="country" Multiplicity="1" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

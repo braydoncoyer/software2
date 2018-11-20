@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -63,9 +64,9 @@
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(244, 342);
+            this.loginButton.Location = new System.Drawing.Point(453, 342);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(309, 28);
+            this.loginButton.Size = new System.Drawing.Size(100, 28);
             this.loginButton.TabIndex = 3;
             this.loginButton.Text = "LOGIN";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -96,18 +97,29 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorLabel.Location = new System.Drawing.Point(241, 385);
+            this.errorLabel.Location = new System.Drawing.Point(241, 129);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(63, 17);
             this.errorLabel.TabIndex = 6;
             this.errorLabel.Text = "ERROR";
             this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(336, 342);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(100, 28);
+            this.exitButton.TabIndex = 7;
+            this.exitButton.Text = "EXIT";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 498);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -132,6 +144,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Button exitButton;
     }
 }
 
