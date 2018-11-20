@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Software2.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace Software2
         public Main()
         {
             InitializeComponent();
+        }
+
+        private void customerButton_Click(object sender, EventArgs e)
+        {
+            CustomerList customerList = new CustomerList();
+            customerList.Show();
+            this.Hide();
         }
     }
 }

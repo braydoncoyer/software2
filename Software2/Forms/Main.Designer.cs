@@ -61,6 +61,7 @@
             this.customerButton.TabIndex = 2;
             this.customerButton.Text = "Customers";
             this.customerButton.UseVisualStyleBackColor = true;
+            this.customerButton.Click += new System.EventHandler(this.customerButton_Click);
             // 
             // appointmentButton
             // 

@@ -16,5 +16,11 @@ namespace Software2.Forms
         {
             InitializeComponent();
         }
+
+        private void CustomerList_Load(object sender, EventArgs e)
+        {
+            var customers = new CustomerService().getCustomers();
+            customerTable.DataSource = customers;
+        }
     }
 }

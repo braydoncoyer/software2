@@ -86,12 +86,15 @@
     <Compile Include="customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\customerDTO.cs" />
     <Compile Include="Forms\CustomerList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CustomerList.Designer.cs">
       <DependentUpon>CustomerList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\CustomerRepository.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>

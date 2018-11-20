@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.customerTable = new System.Windows.Forms.DataGridView();
             this.addCustomerButton = new System.Windows.Forms.Button();
             this.editCustomerButton = new System.Windows.Forms.Button();
             this.deleteCustomerButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerTable)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // customerTable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(31, 30);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(739, 335);
-            this.dataGridView1.TabIndex = 0;
+            this.customerTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.customerTable.Location = new System.Drawing.Point(31, 30);
+            this.customerTable.MultiSelect = false;
+            this.customerTable.Name = "customerTable";
+            this.customerTable.Size = new System.Drawing.Size(739, 335);
+            this.customerTable.TabIndex = 0;
             // 
             // addCustomerButton
             // 
@@ -89,17 +90,18 @@
             this.Controls.Add(this.deleteCustomerButton);
             this.Controls.Add(this.editCustomerButton);
             this.Controls.Add(this.addCustomerButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.customerTable);
             this.Name = "CustomerList";
             this.Text = "CustomerList";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.CustomerList_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.customerTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView customerTable;
         private System.Windows.Forms.Button addCustomerButton;
         private System.Windows.Forms.Button editCustomerButton;
         private System.Windows.Forms.Button deleteCustomerButton;

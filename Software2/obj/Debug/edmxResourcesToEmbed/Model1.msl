@@ -7,7 +7,6 @@
           <ScalarProperty Name="addressId" ColumnName="addressId" />
           <ScalarProperty Name="address1" ColumnName="address" />
           <ScalarProperty Name="address2" ColumnName="address2" />
-          <ScalarProperty Name="cityId" ColumnName="cityId" />
           <ScalarProperty Name="postalCode" ColumnName="postalCode" />
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="createDate" ColumnName="createDate" />
@@ -41,7 +40,6 @@
         <MappingFragment StoreEntitySet="city">
           <ScalarProperty Name="cityId" ColumnName="cityId" />
           <ScalarProperty Name="city1" ColumnName="city" />
-          <ScalarProperty Name="countryId" ColumnName="countryId" />
           <ScalarProperty Name="createDate" ColumnName="createDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
           <ScalarProperty Name="lastUpdate" ColumnName="lastUpdate" />
@@ -66,7 +64,6 @@
         <MappingFragment StoreEntitySet="customer">
           <ScalarProperty Name="customerId" ColumnName="customerId" />
           <ScalarProperty Name="customerName" ColumnName="customerName" />
-          <ScalarProperty Name="addressId" ColumnName="addressId" />
           <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="createDate" ColumnName="createDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
@@ -111,5 +108,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="customeraddress" TypeName="U04uzGModel.customeraddress" StoreEntitySet="customer">
+      <EndProperty Name="address">
+        <ScalarProperty Name="addressId" ColumnName="addressId" />
+      </EndProperty>
+      <EndProperty Name="customer">
+        <ScalarProperty Name="customerId" ColumnName="customerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="addresscity" TypeName="U04uzGModel.addresscity" StoreEntitySet="address">
+      <EndProperty Name="city">
+        <ScalarProperty Name="cityId" ColumnName="cityId" />
+      </EndProperty>
+      <EndProperty Name="address">
+        <ScalarProperty Name="addressId" ColumnName="addressId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="citycountry" TypeName="U04uzGModel.citycountry" StoreEntitySet="city">
+      <EndProperty Name="country">
+        <ScalarProperty Name="countryId" ColumnName="countryId" />
+      </EndProperty>
+      <EndProperty Name="city">
+        <ScalarProperty Name="cityId" ColumnName="cityId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

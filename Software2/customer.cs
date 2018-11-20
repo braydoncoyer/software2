@@ -16,7 +16,6 @@ namespace Software2
     {
         public int customerId { get; set; }
         public string customerName { get; set; }
-        public int addressId { get; set; }
         public bool active { get; set; }
         public System.DateTime createDate { get; set; }
         public string createdBy { get; set; }

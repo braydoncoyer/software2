@@ -129,7 +129,6 @@
           <Property Name="addressId" Type="Int32" Nullable="false" />
           <Property Name="address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cityId" Type="Int32" Nullable="false" />
           <Property Name="postalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="createDate" Type="DateTime" Nullable="false" />
@@ -163,7 +162,6 @@
           </Key>
           <Property Name="cityId" Type="Int32" Nullable="false" />
           <Property Name="city1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="countryId" Type="Int32" Nullable="false" />
           <Property Name="createDate" Type="DateTime" Nullable="false" />
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
@@ -189,7 +187,6 @@
           </Key>
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="customerName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="addressId" Type="Int32" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="createDate" Type="DateTime" Nullable="false" />
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
@@ -276,7 +273,6 @@
                 <ScalarProperty Name="addressId" ColumnName="addressId" />
                 <ScalarProperty Name="address1" ColumnName="address" />
                 <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="cityId" ColumnName="cityId" />
                 <ScalarProperty Name="postalCode" ColumnName="postalCode" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="createDate" ColumnName="createDate" />
@@ -310,7 +306,6 @@
               <MappingFragment StoreEntitySet="city">
                 <ScalarProperty Name="cityId" ColumnName="cityId" />
                 <ScalarProperty Name="city1" ColumnName="city" />
-                <ScalarProperty Name="countryId" ColumnName="countryId" />
                 <ScalarProperty Name="createDate" ColumnName="createDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="lastUpdate" ColumnName="lastUpdate" />
@@ -335,7 +330,6 @@
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="customerId" ColumnName="customerId" />
                 <ScalarProperty Name="customerName" ColumnName="customerName" />
-                <ScalarProperty Name="addressId" ColumnName="addressId" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="createDate" ColumnName="createDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
@@ -380,6 +374,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="customeraddress" TypeName="U04uzGModel.customeraddress" StoreEntitySet="customer">
+            <EndProperty Name="address">
+              <ScalarProperty Name="addressId" ColumnName="addressId" />
+            </EndProperty>
+            <EndProperty Name="customer">
+              <ScalarProperty Name="customerId" ColumnName="customerId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="addresscity" TypeName="U04uzGModel.addresscity" StoreEntitySet="address">
+            <EndProperty Name="city">
+              <ScalarProperty Name="cityId" ColumnName="cityId" />
+            </EndProperty>
+            <EndProperty Name="address">
+              <ScalarProperty Name="addressId" ColumnName="addressId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="citycountry" TypeName="U04uzGModel.citycountry" StoreEntitySet="city">
+            <EndProperty Name="country">
+              <ScalarProperty Name="countryId" ColumnName="countryId" />
+            </EndProperty>
+            <EndProperty Name="city">
+              <ScalarProperty Name="cityId" ColumnName="cityId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

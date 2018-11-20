@@ -22,7 +22,6 @@ namespace Software2
     
         public int cityId { get; set; }
         public string city1 { get; set; }
-        public int countryId { get; set; }
         public System.DateTime createDate { get; set; }
         public string createdBy { get; set; }
         public System.DateTime lastUpdate { get; set; }

@@ -23,7 +23,6 @@ namespace Software2
         public int addressId { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
-        public int cityId { get; set; }
         public string postalCode { get; set; }
         public string phone { get; set; }
         public System.DateTime createDate { get; set; }
