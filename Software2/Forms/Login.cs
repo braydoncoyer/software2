@@ -34,10 +34,9 @@ namespace Software2
             try
             {
                 _userSerivce.login(usernameTextBox.Text, passwordTextBox.Text);
-                Main form = new Main();
+                Main form = new Main(usernameTextBox.Text);
                 this.Hide();
                 form.Show();
-                Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
             }
             catch (Exception ex)
             {

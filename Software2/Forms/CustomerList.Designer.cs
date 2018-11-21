@@ -33,6 +33,7 @@
             this.editCustomerButton = new System.Windows.Forms.Button();
             this.deleteCustomerButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.customerTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,6 +43,7 @@
             this.customerTable.Location = new System.Drawing.Point(31, 30);
             this.customerTable.MultiSelect = false;
             this.customerTable.Name = "customerTable";
+            this.customerTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customerTable.Size = new System.Drawing.Size(739, 335);
             this.customerTable.TabIndex = 0;
             // 
@@ -62,6 +64,7 @@
             this.editCustomerButton.TabIndex = 2;
             this.editCustomerButton.Text = "Edit";
             this.editCustomerButton.UseVisualStyleBackColor = true;
+            this.editCustomerButton.Click += new System.EventHandler(this.editCustomerButton_Click);
             // 
             // deleteCustomerButton
             // 
@@ -81,11 +84,18 @@
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
             // 
+            // mySqlDataAdapter1
+            // 
+            this.mySqlDataAdapter1.DeleteCommand = null;
+            this.mySqlDataAdapter1.InsertCommand = null;
+            this.mySqlDataAdapter1.SelectCommand = null;
+            this.mySqlDataAdapter1.UpdateCommand = null;
+            // 
             // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 460);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.deleteCustomerButton);
             this.Controls.Add(this.editCustomerButton);
@@ -106,5 +116,6 @@
         private System.Windows.Forms.Button editCustomerButton;
         private System.Windows.Forms.Button deleteCustomerButton;
         private System.Windows.Forms.Button backButton;
+        private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
     }
 }

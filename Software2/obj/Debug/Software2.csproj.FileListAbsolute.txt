@@ -85,3 +85,4 @@ C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.cspro
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.csproj.CopyComplete
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.exe
 C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.pdb
+C:\Users\Braydon\Desktop\software2\software2\Software2\obj\Debug\Software2.Forms.EditCustomer.resources

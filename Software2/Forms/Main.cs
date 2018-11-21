@@ -13,14 +13,21 @@ namespace Software2
 {
     public partial class Main : Form
     {
+        string username;
         public Main()
         {
             InitializeComponent();
         }
 
+        public Main(string username)
+        {
+            this.username = username;
+            InitializeComponent();
+        }
+
         private void customerButton_Click(object sender, EventArgs e)
         {
-            CustomerList customerList = new CustomerList();
+            CustomerList customerList = new CustomerList(username);
             customerList.Show();
             this.Hide();
         }

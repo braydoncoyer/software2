@@ -11,5 +11,18 @@ namespace Software2.Forms
         {
             return db.customers.ToList();
         }
+
+        public customer getCustomerByID(int customerID)
+        {
+            return db.customers.FirstOrDefault(c => c.customerId == customerID);
+        }
+
+        public void updateCustomer(customer updatedCustomer)
+        {
+            updatedCustomer.lastUpdate = DateTime.Now;
+            var oldCustomer = this.getCustomerByID(updatedCustomer.customerId);
+            oldCustomer = updatedCustomer;
+            db.SaveChanges();
+        }
     }
 }
