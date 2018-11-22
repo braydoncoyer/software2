@@ -15,7 +15,7 @@ namespace Software2.Forms
     {
         private int customerID;
         private string username;
-        CustomerService _service = new CustomerService();
+        CustomerService _service;
 
         public EditCustomer()
         {
@@ -26,6 +26,7 @@ namespace Software2.Forms
         {
             this.username = username;
             this.customerID = customerID;
+            _service = new CustomerService(username);
             InitializeComponent();
         }
 
@@ -33,8 +34,7 @@ namespace Software2.Forms
         {
             var customerDTO = _service.getCustomerByID(customerID);
             nameTextBox.Text = customerDTO.name;
-            address1TextBox.Text = customerDTO.address1;
-            address2TextBox.Text = customerDTO.address2;
+            address1TextBox.Text = customerDTO.address;
             cityTextBox.Text = customerDTO.city;
             zipcodeTextBox.Text = customerDTO.zipcode;
             countryTextBox.Text = customerDTO.country;
@@ -45,9 +45,14 @@ namespace Software2.Forms
         {
             var customerDTO = new customerDTO();
             customerDTO.name = nameTextBox.Text;
+            customerDTO.address = address1TextBox.Text;
+            customerDTO.city = cityTextBox.Text;
+            customerDTO.country = countryTextBox.Text;
+            customerDTO.zipcode = zipcodeTextBox.Text;
+            customerDTO.phone = phoneTextBox.Text;
             customerDTO.id = customerID;
             //customerDTO.address1 = address1TextBox.Text;
-            _service.updateCustomer(customerDTO, username);
+            _service.updateCustomer(customerDTO);
 
         }
     }

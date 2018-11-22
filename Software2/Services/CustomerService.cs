@@ -6,9 +6,12 @@ namespace Software2.Forms
 {
     public class CustomerService
     {
-        CustomerRepository _repo = new CustomerRepository();
-        public CustomerService()
+        CustomerRepository _repo;
+        string username;
+        public CustomerService(string username)
         {
+            this.username = username;
+            _repo = new CustomerRepository(this.username);
         }
 
         public List<customerDTO> getCustomers()
@@ -27,8 +30,7 @@ namespace Software2.Forms
         {
             var dto = new customerDTO();
             dto.name = c.customerName;
-            dto.address1 = c.address.address1;
-            dto.address2 = c.address.address2;
+            dto.address = c.address.address1;
             dto.city = c.address.city.city1;
             dto.country = c.address.city.country.country1;
             dto.zipcode = c.address.postalCode;
@@ -44,12 +46,21 @@ namespace Software2.Forms
             return dto;
         }
 
-        public void updateCustomer(customerDTO customerDTO, string username)
+        public void updateCustomer(customerDTO customerDTO)
         {
             var updatedCustomer = _repo.getCustomerByID(customerDTO.id);
+            checkAddressForUpdates(customerDTO, updatedCustomer);
             updatedCustomer.customerName = customerDTO.name;
-            updatedCustomer.lastUpdateBy = username;
+            updatedCustomer.lastUpdateBy = this.username;
             _repo.updateCustomer(updatedCustomer);
+        }
+
+        public void checkAddressForUpdates(customerDTO customerDTO, customer updatedCustomer)
+        {
+            if(!string.Equals(customerDTO.country, updatedCustomer.address.city.country))
+            {
+                var newCountry = _repo.createNewCountry(customerDTO.country);
+            }
         }
     }
 }
