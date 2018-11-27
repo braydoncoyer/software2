@@ -45,5 +45,20 @@ namespace Software2.Forms
             db.SaveChanges();
             return newCountry;
         }
+
+        public city createNewCity(string city, country country)
+        {
+            city newCity = new city();
+            newCity.city1 = city;
+            newCity.cityId = (db.cities.OrderByDescending(c => c.cityId).FirstOrDefault().cityId) + 1;
+            newCity.createDate = DateTime.Now;
+            newCity.createdBy = this.username;
+            newCity.lastUpdate = DateTime.Now;
+            newCity.lastUpdateBy = this.username;
+            newCity.country = country;
+            db.cities.Add(newCity);
+            db.SaveChanges();
+            return newCity;
+        }
     }
 }

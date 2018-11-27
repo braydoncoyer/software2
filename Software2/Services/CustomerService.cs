@@ -49,18 +49,24 @@ namespace Software2.Forms
         public void updateCustomer(customerDTO customerDTO)
         {
             var updatedCustomer = _repo.getCustomerByID(customerDTO.id);
-            checkAddressForUpdates(customerDTO, updatedCustomer);
+            updatedCustomer = checkAddressForUpdates(customerDTO, updatedCustomer);
             updatedCustomer.customerName = customerDTO.name;
             updatedCustomer.lastUpdateBy = this.username;
             _repo.updateCustomer(updatedCustomer);
         }
 
-        public void checkAddressForUpdates(customerDTO customerDTO, customer updatedCustomer)
+        public customer checkAddressForUpdates(customerDTO customerDTO, customer updatedCustomer)
         {
             if(!string.Equals(customerDTO.country, updatedCustomer.address.city.country))
             {
-                var newCountry = _repo.createNewCountry(customerDTO.country);
+               updatedCustomer.address.city.country = _repo.createNewCountry(customerDTO.country);
             }
+            if(!string.Equals(customerDTO.city, updatedCustomer.address.city.city1))
+            {
+                updatedCustomer.address.city = _repo.createNewCity(customerDTO.city, updatedCustomer.address.city.country);
+            }
+
+            return updatedCustomer;
         }
     }
 }
