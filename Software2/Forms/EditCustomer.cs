@@ -34,7 +34,8 @@ namespace Software2.Forms
         {
             var customerDTO = _service.getCustomerByID(customerID);
             nameTextBox.Text = customerDTO.name;
-            address1TextBox.Text = customerDTO.address;
+            address1TextBox.Text = customerDTO.address1;
+            address2TextBox.Text = customerDTO.address2;
             cityTextBox.Text = customerDTO.city;
             zipcodeTextBox.Text = customerDTO.zipcode;
             countryTextBox.Text = customerDTO.country;
@@ -45,7 +46,8 @@ namespace Software2.Forms
         {
             var customerDTO = new customerDTO();
             customerDTO.name = nameTextBox.Text;
-            customerDTO.address = address1TextBox.Text;
+            customerDTO.address1 = address1TextBox.Text;
+            customerDTO.address2 = address2TextBox.Text;
             customerDTO.city = cityTextBox.Text;
             customerDTO.country = countryTextBox.Text;
             customerDTO.zipcode = zipcodeTextBox.Text;

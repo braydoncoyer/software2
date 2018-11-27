@@ -30,7 +30,8 @@ namespace Software2.Forms
         {
             var dto = new customerDTO();
             dto.name = c.customerName;
-            dto.address = c.address.address1;
+            dto.address1 = c.address.address1;
+            dto.address2 = c.address.address2;
             dto.city = c.address.city.city1;
             dto.country = c.address.city.country.country1;
             dto.zipcode = c.address.postalCode;
@@ -64,6 +65,17 @@ namespace Software2.Forms
             if(!string.Equals(customerDTO.city, updatedCustomer.address.city.city1))
             {
                 updatedCustomer.address.city = _repo.createNewCity(customerDTO.city, updatedCustomer.address.city.country);
+            }
+            if(!string.Equals(customerDTO.address1, updatedCustomer.address.address1) || !string.Equals(customerDTO.address2, updatedCustomer.address.address2))
+            {
+                address newAddress = new address();
+                newAddress.address1 = customerDTO.address1;
+                newAddress.address2 = customerDTO.address2;
+                newAddress.city = updatedCustomer.address.city;
+                newAddress.city.country = updatedCustomer.address.city.country;
+                newAddress.phone = customerDTO.phone;
+                newAddress.postalCode = customerDTO.zipcode;
+                updatedCustomer.address = _repo.createNewAddress(newAddress);
             }
 
             return updatedCustomer;

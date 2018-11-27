@@ -60,5 +60,17 @@ namespace Software2.Forms
             db.SaveChanges();
             return newCity;
         }
+
+        public address createNewAddress(address newAddress)
+        {
+            newAddress.addressId = (db.addresses.OrderByDescending(a => a.addressId).FirstOrDefault().addressId) + 1;
+            newAddress.createDate = DateTime.Now;
+            newAddress.createdBy = this.username;
+            newAddress.lastUpdate = DateTime.Now;
+            newAddress.lastUpdateBy = this.username;
+            db.addresses.Add(newAddress);
+            db.SaveChanges();
+            return newAddress;
+        }
     }
 }
