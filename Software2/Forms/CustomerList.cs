@@ -35,7 +35,7 @@ namespace Software2.Forms
         {
             int selectedRow = customerTable.SelectedRows[0].Index;
             int customerID = Convert.ToInt32(customerTable.Rows[selectedRow].Cells[customerTable.ColumnCount-1].Value);
-            EditCustomer editCustomerForm = new EditCustomer(customerID, username);
+            EditCustomer editCustomerForm = new EditCustomer(customerID, username, this);
             editCustomerForm.Show();
 
             this.Hide();

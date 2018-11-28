@@ -15,6 +15,7 @@ namespace Software2.Forms
     {
         private int customerID;
         private string username;
+        private Form previousForm;
         CustomerService _service;
 
         public EditCustomer()
@@ -22,10 +23,11 @@ namespace Software2.Forms
             InitializeComponent();
         }
 
-        public EditCustomer(int customerID, string username)
+        public EditCustomer(int customerID, string username, Form previousForm)
         {
             this.username = username;
             this.customerID = customerID;
+            this.previousForm = previousForm;
             _service = new CustomerService(username);
             InitializeComponent();
         }
@@ -53,8 +55,9 @@ namespace Software2.Forms
             customerDTO.zipcode = zipcodeTextBox.Text;
             customerDTO.phone = phoneTextBox.Text;
             customerDTO.id = customerID;
-            //customerDTO.address1 = address1TextBox.Text;
             _service.updateCustomer(customerDTO);
+            this.Hide();
+            this.previousForm.Show();
 
         }
     }

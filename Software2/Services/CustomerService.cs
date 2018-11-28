@@ -58,21 +58,30 @@ namespace Software2.Forms
 
         public customer checkAddressForUpdates(customerDTO customerDTO, customer updatedCustomer)
         {
-            if(!string.Equals(customerDTO.country, updatedCustomer.address.city.country))
+            var oldCountry = updatedCustomer.address.city.country;
+            var oldCity = updatedCustomer.address.city;
+            var changed = false;
+
+            if (!string.Equals(customerDTO.country, updatedCustomer.address.city.country.country1))
             {
-               updatedCustomer.address.city.country = _repo.createNewCountry(customerDTO.country);
+                changed = true;
+               oldCountry = _repo.createNewCountry(customerDTO.country);
             }
             if(!string.Equals(customerDTO.city, updatedCustomer.address.city.city1))
             {
-                updatedCustomer.address.city = _repo.createNewCity(customerDTO.city, updatedCustomer.address.city.country);
+                changed = true;
+                oldCity = _repo.createNewCity(customerDTO.city, oldCountry);
             }
-            if(!string.Equals(customerDTO.address1, updatedCustomer.address.address1) || !string.Equals(customerDTO.address2, updatedCustomer.address.address2))
+            if(!string.Equals(customerDTO.address1, updatedCustomer.address.address1) || 
+                !string.Equals(customerDTO.address2, updatedCustomer.address.address2) ||
+                changed)
             {
+                // TODO: Figure out how to refresh CustomerList grid to update listings.
                 address newAddress = new address();
                 newAddress.address1 = customerDTO.address1;
                 newAddress.address2 = customerDTO.address2;
-                newAddress.city = updatedCustomer.address.city;
-                newAddress.city.country = updatedCustomer.address.city.country;
+                newAddress.city = oldCity;
+                newAddress.city.country = oldCountry;
                 newAddress.phone = customerDTO.phone;
                 newAddress.postalCode = customerDTO.zipcode;
                 updatedCustomer.address = _repo.createNewAddress(newAddress);
