@@ -35,11 +35,18 @@ namespace Software2.Forms
         {
             int selectedRow = customerTable.SelectedRows[0].Index;
             int customerID = Convert.ToInt32(customerTable.Rows[selectedRow].Cells[customerTable.ColumnCount-1].Value);
-            EditCustomer editCustomerForm = new EditCustomer(customerID, username, this);
+            EditCustomer editCustomerForm = new EditCustomer(customerID, username);
             editCustomerForm.Show();
 
-            this.Hide();
+            this.Close();
             
+        }
+
+        private void addCustomerButton_Click(object sender, EventArgs e)
+        {
+            EditCustomer editCustomerForm = new EditCustomer(username);
+            editCustomerForm.Show();
+            this.Close();
         }
     }
 }

@@ -72,5 +72,16 @@ namespace Software2.Forms
             db.SaveChanges();
             return newAddress;
         }
+
+        internal void createCustomer(customer newCustomer)
+        {
+            newCustomer.customerId = (db.customers.OrderByDescending(c => c.customerId).FirstOrDefault().customerId) + 1;
+            newCustomer.lastUpdate = DateTime.Now;
+            newCustomer.lastUpdateBy = this.username;
+            newCustomer.createDate = DateTime.Now;
+            newCustomer.createdBy = this.username;
+            db.customers.Add(newCustomer);
+            db.SaveChanges();
+        }
     }
 }

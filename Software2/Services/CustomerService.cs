@@ -76,18 +76,48 @@ namespace Software2.Forms
                 !string.Equals(customerDTO.address2, updatedCustomer.address.address2) ||
                 changed)
             {
-                // TODO: Figure out how to refresh CustomerList grid to update listings.
-                address newAddress = new address();
-                newAddress.address1 = customerDTO.address1;
-                newAddress.address2 = customerDTO.address2;
-                newAddress.city = oldCity;
-                newAddress.city.country = oldCountry;
-                newAddress.phone = customerDTO.phone;
-                newAddress.postalCode = customerDTO.zipcode;
+                var newAddress = constructAddress(customerDTO, oldCity, oldCountry);
                 updatedCustomer.address = _repo.createNewAddress(newAddress);
             }
 
             return updatedCustomer;
+        }
+
+        public void addCustomer(customerDTO customerDTO)
+        {
+            var country = _repo.createNewCountry(customerDTO.country);
+            var city = _repo.createNewCity(customerDTO.city, country);
+            var address = constructAddress(customerDTO, city, country);
+            _repo.createNewAddress(address);
+
+            customer newCustomer = new customer();
+            newCustomer.address = address;
+            newCustomer.address.city = city;
+            newCustomer.address.city.country = country;
+            newCustomer = mapDTOToCustomer(customerDTO, newCustomer);
+
+            _repo.createCustomer(newCustomer);
+        }
+
+        public customer mapDTOToCustomer(customerDTO customerDTO, customer newCustomer)
+        {
+            newCustomer.active = true;
+            newCustomer.customerName = customerDTO.name;
+            return newCustomer;
+        }
+
+        private address constructAddress(customerDTO customerDTO, city city, country country)
+        {
+            address newAddress = new address();
+            newAddress.address1 = customerDTO.address1;
+            newAddress.address2 = customerDTO.address2;
+            newAddress.phone = customerDTO.phone;
+            newAddress.city = city;
+            newAddress.city.country = country;
+            newAddress.phone = customerDTO.phone;
+            newAddress.postalCode = customerDTO.zipcode;
+            return newAddress;
+
         }
     }
 }
