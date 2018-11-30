@@ -75,6 +75,7 @@
             this.deleteCustomerButton.TabIndex = 3;
             this.deleteCustomerButton.Text = "Delete";
             this.deleteCustomerButton.UseVisualStyleBackColor = true;
+            this.deleteCustomerButton.Click += new System.EventHandler(this.deleteCustomerButton_Click);
             // 
             // backButton
             // 

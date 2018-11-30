@@ -56,6 +56,11 @@ namespace Software2.Forms
             _repo.updateCustomer(updatedCustomer);
         }
 
+        internal void deleteCustomer(int customerID)
+        {
+            _repo.deleteCustomer(customerID);
+        }
+
         public customer checkAddressForUpdates(customerDTO customerDTO, customer updatedCustomer)
         {
             var oldCountry = updatedCustomer.address.city.country;

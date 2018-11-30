@@ -61,6 +61,13 @@ namespace Software2.Forms
             return newCity;
         }
 
+        internal void deleteCustomer(int customerID)
+        {
+            var customerToDelete = getCustomerByID(customerID);
+            db.customers.Remove(customerToDelete);
+            db.SaveChanges();
+        }
+
         public address createNewAddress(address newAddress)
         {
             newAddress.addressId = (db.addresses.OrderByDescending(a => a.addressId).FirstOrDefault().addressId) + 1;
