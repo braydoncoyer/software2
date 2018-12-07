@@ -19,6 +19,12 @@ namespace Software2.Repository
             return _db.users.FirstOrDefault(p => p.userName.Equals(username));
         }
 
+        public appointment getAppointmentByID(int id)
+        {
+            //TODO: Fix error
+            return _db.appointments.FirstOrDefault(a => a.appointmentId == id);
+        }
+
         public void addUser(user user)
         {
             _db.users.Add(user);

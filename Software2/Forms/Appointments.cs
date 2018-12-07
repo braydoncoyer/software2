@@ -14,7 +14,8 @@ namespace Software2.Forms
     public partial class Appointments : Form
     {
         CustomerService _customerService;
-        UserService _userService = new UserService(); 
+        UserService _userService = new UserService();
+        AppointmentService _appointmentService = new AppointmentService();
         private string username;
 
         public Appointments()
@@ -47,6 +48,12 @@ namespace Software2.Forms
             userComboBox.ValueMember = "userId";
             userComboBox.DisplayMember = "userName";
             userComboBox.DataSource = userList;
+
+            var id = 1;
+            var appointment = _appointmentService.getAppointmentByID(id);
+            nameTextBox.Text = appointment.title;
+            customerComboBox.SelectedIndex = appointment.customerId;
+            userComboBox.SelectedValue = appointment.contact;
         }
     }
 }
