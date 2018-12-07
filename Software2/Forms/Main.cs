@@ -31,5 +31,12 @@ namespace Software2
             customerList.Show();
             this.Hide();
         }
+
+        private void appointmentButton_Click(object sender, EventArgs e)
+        {
+            Appointments appointmentForm = new Appointments(username);
+            appointmentForm.Show();
+            this.Hide();
+        }
     }
 }

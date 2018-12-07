@@ -29,7 +29,7 @@ namespace Software2.Forms
 
         private void CustomerList_Load(object sender, EventArgs e)
         {
-            var customers = new CustomerService(username).getCustomers();
+            var customers = new CustomerService(username).getCustomerDTOs();
             customerTable.DataSource = customers;
         }
 

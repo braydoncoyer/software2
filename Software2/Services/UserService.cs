@@ -26,6 +26,11 @@ namespace Software2.Services
             }
         }
 
+        public List<user> getUsers()
+        {
+            return _repo.getUsers();
+        }
+
         public user findByUsername(String username)
         {
             if(username == null)

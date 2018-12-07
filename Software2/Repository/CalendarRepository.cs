@@ -32,6 +32,11 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
+        public List<user> getUsers()
+        {
+            return _db.users.ToList();
+        }
+
         public void deleteUser(int id)
         {
             var _deleteUser = this.findUser(id);

@@ -72,6 +72,7 @@
             this.appointmentButton.TabIndex = 3;
             this.appointmentButton.Text = "Appointments";
             this.appointmentButton.UseVisualStyleBackColor = true;
+            this.appointmentButton.Click += new System.EventHandler(this.appointmentButton_Click);
             // 
             // Main
             // 

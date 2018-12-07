@@ -14,7 +14,7 @@ namespace Software2.Forms
             _repo = new CustomerRepository(this.username);
         }
 
-        public List<customerDTO> getCustomers()
+        public List<customerDTO> getCustomerDTOs()
         {
             var customers = _repo.getCustomers();
             List<customerDTO> customerDTOs = new List<customerDTO>();
@@ -24,6 +24,11 @@ namespace Software2.Forms
                 customerDTOs.Add(dto);
             }
             return customerDTOs;
+        }
+
+        public List<customer> getCustomers()
+        {
+            return _repo.getCustomers();
         }
 
         public customerDTO mapDTO(customer c)
