@@ -37,23 +37,27 @@ namespace Software2.Forms
 
         private void Appointments_Load(object sender, EventArgs e)
         {
+
+            startDatePicker.Format = DateTimePickerFormat.Custom;
+            startDatePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            endDatePicker.Format = DateTimePickerFormat.Custom;
+            endDatePicker.CustomFormat = "MM/dd/yyyy hh:mm";
             var customerList = _customerService.getCustomers();
             
             customerComboBox.ValueMember = "customerId";
             customerComboBox.DisplayMember = "customerName";
             customerComboBox.DataSource = customerList;
 
-            var userList = _userService.getUsers();
-
-            userComboBox.ValueMember = "userId";
-            userComboBox.DisplayMember = "userName";
-            userComboBox.DataSource = userList;
-
             var id = 1;
             var appointment = _appointmentService.getAppointmentByID(id);
             nameTextBox.Text = appointment.title;
             customerComboBox.SelectedIndex = appointment.customerId;
-            userComboBox.SelectedValue = appointment.contact;
+            contactTextBox.Text = appointment.contact;
+            locationTextBox.Text = appointment.location;
+            URLTextBox.Text = appointment.url;
+            descriptionTextBox.Text = appointment.description;
+            startDatePicker.Value = appointment.start;
+            endDatePicker.Value = appointment.end;
         }
     }
 }

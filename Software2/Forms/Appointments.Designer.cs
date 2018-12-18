@@ -39,11 +39,14 @@
             this.URLTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateInput = new System.Windows.Forms.DateTimePicker();
+            this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
-            this.userComboBox = new System.Windows.Forms.ComboBox();
+            this.contactTextBox = new System.Windows.Forms.TextBox();
+            this.endDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -139,13 +142,14 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Description *";
             // 
-            // dateInput
+            // startDatePicker
             // 
-            this.dateInput.Location = new System.Drawing.Point(114, 346);
-            this.dateInput.Name = "dateInput";
-            this.dateInput.Size = new System.Drawing.Size(200, 20);
-            this.dateInput.TabIndex = 15;
-            this.dateInput.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.startDatePicker.Location = new System.Drawing.Point(114, 346);
+            this.startDatePicker.Name = "startDatePicker";
+            this.startDatePicker.Size = new System.Drawing.Size(127, 20);
+            this.startDatePicker.TabIndex = 15;
+            this.startDatePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // cancelButton
             // 
@@ -174,25 +178,52 @@
             this.customerComboBox.Size = new System.Drawing.Size(262, 21);
             this.customerComboBox.TabIndex = 19;
             // 
-            // userComboBox
+            // contactTextBox
             // 
-            this.userComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.userComboBox.FormattingEnabled = true;
-            this.userComboBox.Location = new System.Drawing.Point(113, 136);
-            this.userComboBox.Name = "userComboBox";
-            this.userComboBox.Size = new System.Drawing.Size(262, 21);
-            this.userComboBox.TabIndex = 20;
+            this.contactTextBox.Location = new System.Drawing.Point(113, 138);
+            this.contactTextBox.Name = "contactTextBox";
+            this.contactTextBox.Size = new System.Drawing.Size(262, 20);
+            this.contactTextBox.TabIndex = 21;
+            // 
+            // endDatePicker
+            // 
+            this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endDatePicker.Location = new System.Drawing.Point(266, 346);
+            this.endDatePicker.Name = "endDatePicker";
+            this.endDatePicker.Size = new System.Drawing.Size(127, 20);
+            this.endDatePicker.TabIndex = 22;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(111, 330);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Start *";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(263, 330);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "End *";
             // 
             // Appointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.userComboBox);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.endDatePicker);
+            this.Controls.Add(this.contactTextBox);
             this.Controls.Add(this.customerComboBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.dateInput);
+            this.Controls.Add(this.startDatePicker);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.label5);
@@ -225,10 +256,13 @@
         private System.Windows.Forms.TextBox URLTextBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateInput;
+        private System.Windows.Forms.DateTimePicker startDatePicker;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.ComboBox customerComboBox;
-        private System.Windows.Forms.ComboBox userComboBox;
+        private System.Windows.Forms.TextBox contactTextBox;
+        private System.Windows.Forms.DateTimePicker endDatePicker;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
