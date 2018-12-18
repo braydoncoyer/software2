@@ -15,8 +15,9 @@ namespace Software2.Forms
     {
         CustomerService _customerService;
         UserService _userService = new UserService();
-        AppointmentService _appointmentService = new AppointmentService();
+        AppointmentService _appointmentService;
         private string username;
+        int id = 1;
 
         public Appointments()
         {
@@ -27,6 +28,7 @@ namespace Software2.Forms
         {
             this.username = username;
             _customerService = new CustomerService(this.username);
+            _appointmentService = new AppointmentService(this.username);
             InitializeComponent();
         }
 
@@ -37,19 +39,32 @@ namespace Software2.Forms
 
         private void Appointments_Load(object sender, EventArgs e)
         {
-
-            startDatePicker.Format = DateTimePickerFormat.Custom;
-            startDatePicker.CustomFormat = "MM/dd/yyyy hh:mm";
-            endDatePicker.Format = DateTimePickerFormat.Custom;
-            endDatePicker.CustomFormat = "MM/dd/yyyy hh:mm";
-            var customerList = _customerService.getCustomers();
             
+            var appointment = _appointmentService.getAppointmentByID(id);
+
+            setCustomerCombo();
+            setDateFormats();
+            setElements(appointment);
+
+        }
+
+        private void setCustomerCombo()
+        {
+            var customerList = _customerService.getCustomers();
             customerComboBox.ValueMember = "customerId";
             customerComboBox.DisplayMember = "customerName";
             customerComboBox.DataSource = customerList;
+        }
 
-            var id = 1;
-            var appointment = _appointmentService.getAppointmentByID(id);
+        private void setDateFormats()
+        {
+            string format = "MM/dd/yyyy hh:mm";
+            startDatePicker.CustomFormat = format;
+            endDatePicker.CustomFormat = format;
+        }
+
+        private void setElements(appointment appointment)
+        {
             nameTextBox.Text = appointment.title;
             customerComboBox.SelectedIndex = appointment.customerId;
             contactTextBox.Text = appointment.contact;
@@ -58,6 +73,26 @@ namespace Software2.Forms
             descriptionTextBox.Text = appointment.description;
             startDatePicker.Value = appointment.start;
             endDatePicker.Value = appointment.end;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            var updatedAppointment = createAppointment();
+            _appointmentService.updateAppointment(updatedAppointment);
+        }
+
+        private appointment createAppointment()
+        {
+            var appointment = _appointmentService.getAppointmentByID(id);
+            appointment.customerId = (int)customerComboBox.SelectedValue;
+            appointment.title = nameTextBox.Text;
+            appointment.description = descriptionTextBox.Text;
+            appointment.location = locationTextBox.Text;
+            appointment.contact = contactTextBox.Text;
+            appointment.url = URLTextBox.Text;
+            appointment.start = startDatePicker.Value;
+            appointment.end = endDatePicker.Value;
+            return appointment;
         }
     }
 }

@@ -31,6 +31,13 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
+        public void updateAppointment(appointment updatedAppointment)
+        {
+            var appointmentToUpdate = getAppointmentByID(updatedAppointment.appointmentId);
+            appointmentToUpdate = updatedAppointment;
+            _db.SaveChanges();
+        }
+
         public void updateUser(user updateUser, int id)
         {
             var _user = this.findUser(id);
