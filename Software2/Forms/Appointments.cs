@@ -66,7 +66,7 @@ namespace Software2.Forms
         private void setElements(appointment appointment)
         {
             nameTextBox.Text = appointment.title;
-            customerComboBox.SelectedIndex = appointment.customerId;
+            customerComboBox.SelectedValue = appointment.customerId;
             contactTextBox.Text = appointment.contact;
             locationTextBox.Text = appointment.location;
             URLTextBox.Text = appointment.url;
@@ -78,7 +78,34 @@ namespace Software2.Forms
         private void saveButton_Click(object sender, EventArgs e)
         {
             var updatedAppointment = createAppointment();
-            _appointmentService.updateAppointment(updatedAppointment);
+            errorLabel.Text = "";
+            try
+            {
+                validateAppointment(updatedAppointment);
+                _appointmentService.updateAppointment(updatedAppointment);
+            }
+            catch (Exception ex)
+            {
+                errorLabel.Text = ex.Message;
+            }
+            
+            
+        }
+
+        private void validateAppointment(appointment appointment)
+        {
+
+            int OPENED = 9;
+            int CLOSED = 17;
+            // Ensure during business hours
+            if (appointment.start.Hour < OPENED || appointment.end.Hour < OPENED)
+            {
+                throw new Exception("Must be between normal business hours");
+            }
+            if (appointment.start.Hour > CLOSED || appointment.end.Hour > CLOSED)
+            {
+                throw new Exception("Must be between normal business hours");
+            }
         }
 
         private appointment createAppointment()
