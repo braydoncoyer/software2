@@ -1,4 +1,5 @@
 ﻿using Software2.Repository;
+using Software2.SharedMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Software2.Services
 
         public void updateAppointment(appointment updatedAppointment)
         {
-            updatedAppointment.lastUpdate = DateTime.Now;
+            updatedAppointment.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
             updatedAppointment.lastUpdateBy = username;
 
             _repo.updateAppointment(updatedAppointment);

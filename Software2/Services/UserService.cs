@@ -1,4 +1,5 @@
 ﻿using Software2.Repository;
+using Software2.SharedMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,7 @@ namespace Software2.Services
                 //checks for required fields
                 if(user.userName == null || user.password == null)
                 {
-                    user.lastUpdate = DateTime.Now;
+                    user.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now); ;
                     _repo.addUser(user);
                 }
             }
@@ -62,7 +63,7 @@ namespace Software2.Services
         {
             //Add checks for required fields?
 
-            updateUser.lastUpdate = DateTime.Now;
+            updateUser.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now); ;
             _repo.updateUser(updateUser, id);
         }
 

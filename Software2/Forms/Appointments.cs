@@ -45,6 +45,7 @@ namespace Software2.Forms
             setCustomerCombo();
             setDateFormats();
             setElements(appointment);
+            errorLabel.Hide();
 
         }
 
@@ -79,6 +80,7 @@ namespace Software2.Forms
         {
             var updatedAppointment = createAppointment();
             errorLabel.Text = "";
+            errorLabel.Hide();
             try
             {
                 validateAppointment(updatedAppointment);
@@ -87,6 +89,7 @@ namespace Software2.Forms
             catch (Exception ex)
             {
                 errorLabel.Text = ex.Message;
+                errorLabel.Show();
             }
             
             
@@ -120,6 +123,13 @@ namespace Software2.Forms
             appointment.start = startDatePicker.Value;
             appointment.end = endDatePicker.Value;
             return appointment;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Main mainForm = new Main(this.username);
+            mainForm.Show();
+            this.Close();
         }
     }
 }

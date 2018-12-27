@@ -90,5 +90,12 @@ namespace Software2.Forms
             this.Close();
 
         }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            CustomerList customerList = new CustomerList(this.username);
+            customerList.Show();
+            this.Close();
+        }
     }
 }

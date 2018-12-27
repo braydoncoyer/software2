@@ -146,6 +146,7 @@
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\AppointmentService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="SharedMethods\DateTimeMethods.cs" />
     <Compile Include="user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -36,7 +36,7 @@ namespace Software2
         {
             Appointments appointmentForm = new Appointments(username);
             appointmentForm.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

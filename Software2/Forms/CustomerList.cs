@@ -60,5 +60,12 @@ namespace Software2.Forms
             // TODO: Figure out why form is not refreshing to see new udpated data.
             this.Refresh();
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            Main mainForm = new Main(this.username);
+            mainForm.Show();
+            this.Close();
+        }
     }
 }
