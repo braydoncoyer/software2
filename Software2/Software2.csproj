@@ -105,6 +105,7 @@
     <Compile Include="Forms\EditCustomer.Designer.cs">
       <DependentUpon>EditCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Forms\Login.cs">

@@ -16,6 +16,7 @@ namespace Software2.Repository
 
         public user findByUsername(String username)
         {
+            // Finds the user where the username equals the username passed in
             return _db.users.FirstOrDefault(p => p.userName.Equals(username));
         }
 
@@ -55,8 +56,5 @@ namespace Software2.Repository
             var _deleteUser = this.findUser(id);
             _db.users.Remove(_deleteUser);
         }
-
-
-
     }
 }
