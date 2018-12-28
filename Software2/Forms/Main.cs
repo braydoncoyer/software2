@@ -34,8 +34,8 @@ namespace Software2
 
         private void appointmentButton_Click(object sender, EventArgs e)
         {
-            Appointments appointmentForm = new Appointments(username);
-            appointmentForm.Show();
+            AppointmentList listForm = new AppointmentList(username);
+            listForm.Show();
             this.Close();
         }
     }

@@ -44,6 +44,7 @@
             this.backButton.TabIndex = 9;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // deleteButton
             // 
@@ -53,6 +54,7 @@
             this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
@@ -62,6 +64,7 @@
             this.editButton.TabIndex = 7;
             this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // addButton
             // 
@@ -71,6 +74,7 @@
             this.addButton.TabIndex = 6;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // appointmentTable
             // 

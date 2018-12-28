@@ -148,7 +148,7 @@
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startDatePicker.Location = new System.Drawing.Point(114, 346);
             this.startDatePicker.Name = "startDatePicker";
-            this.startDatePicker.Size = new System.Drawing.Size(127, 20);
+            this.startDatePicker.Size = new System.Drawing.Size(157, 20);
             this.startDatePicker.TabIndex = 15;
             this.startDatePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -191,9 +191,9 @@
             // endDatePicker
             // 
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDatePicker.Location = new System.Drawing.Point(266, 346);
+            this.endDatePicker.Location = new System.Drawing.Point(314, 346);
             this.endDatePicker.Name = "endDatePicker";
-            this.endDatePicker.Size = new System.Drawing.Size(127, 20);
+            this.endDatePicker.Size = new System.Drawing.Size(156, 20);
             this.endDatePicker.TabIndex = 22;
             // 
             // label7
@@ -208,7 +208,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(263, 330);
+            this.label8.Location = new System.Drawing.Point(311, 330);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(33, 13);
             this.label8.TabIndex = 24;

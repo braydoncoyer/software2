@@ -1,4 +1,5 @@
-﻿using Software2.Repository;
+﻿using Software2.DTO;
+using Software2.Repository;
 using Software2.SharedMethods;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,46 @@ namespace Software2.Services
             updatedAppointment.lastUpdateBy = username;
 
             _repo.updateAppointment(updatedAppointment);
+        }
+
+        public List<appointmentDTO> getAppointmentDTOs()
+        {
+            var appointments = _repo.getAppointments();
+            List<appointmentDTO> appointmentDTOs = new List<appointmentDTO>();
+            foreach (var a in appointments)
+            {
+                var dto = mapDTO(a);
+                appointmentDTOs.Add(dto);
+            }
+            return appointmentDTOs;
+        }
+
+        public appointmentDTO mapDTO(appointment a)
+        {
+            var dto = new appointmentDTO();
+            dto.appointmentID = a.appointmentId;
+            dto.title = a.title;
+            dto.description = a.description;
+            dto.customerName = a.customer.customerName;
+            dto.start = a.start.ToLongDateString();
+            dto.end = a.end.ToLongDateString() ;
+            dto.location = a.location;
+            return dto;
+        }
+
+        public void addAppointment(appointment appointmentToCreate)
+        {
+            appointmentToCreate.createDate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
+            appointmentToCreate.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
+            appointmentToCreate.createdBy = username;
+            appointmentToCreate.lastUpdateBy = username;
+
+            _repo.addAppointment(appointmentToCreate);
+        }
+
+        public void deleteAppointment(int appointmentID)
+        {
+            _repo.deleteAppointment(appointmentID);
         }
     }
 }

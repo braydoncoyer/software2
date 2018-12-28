@@ -24,9 +24,9 @@ namespace Software2
                 initUser.password = "test";
                 initUser.userId = 1;
                 initUser.lastUpdate = DateTime.Now;
-                initUser.lastUpdatedBy = "Braydon";
+                initUser.lastUpdatedBy = "test";
                 initUser.active = 1;
-                initUser.createBy = "Braydon";
+                initUser.createBy = "test";
                 initUser.createDate = DateTime.Now;
 
                 entities.users.Add(initUser);

@@ -17,14 +17,24 @@ namespace Software2.Forms
         UserService _userService = new UserService();
         AppointmentService _appointmentService;
         private string username;
-        int id = 1;
-
-        public Appointments()
-        {
-            InitializeComponent();
-        }
+        int id;
+        private enum editMode { add = 0, edit = 1 };
+        int editmode;
 
         public Appointments(string username)
+        {
+            initClass(username);
+            this.editmode = (int)editMode.add;
+        }
+
+        public Appointments(int id, string username)
+        {
+            this.id = id;
+            initClass(username);
+            this.editmode = (int)editMode.edit;
+        }
+
+        private void initClass(string username)
         {
             this.username = username;
             _customerService = new CustomerService(this.username);
@@ -39,14 +49,18 @@ namespace Software2.Forms
 
         private void Appointments_Load(object sender, EventArgs e)
         {
-            
-            var appointment = _appointmentService.getAppointmentByID(id);
-
+            errorLabel.Hide();
             setCustomerCombo();
             setDateFormats();
-            setElements(appointment);
-            errorLabel.Hide();
-
+            if (editmode == (int)editMode.edit)
+            {
+                var appointment = _appointmentService.getAppointmentByID(id);
+                setElements(appointment);
+            }
+            else
+            {
+                titleLabel.Text = "Add Appointment".ToUpper();
+            }
         }
 
         private void setCustomerCombo()
@@ -59,7 +73,7 @@ namespace Software2.Forms
 
         private void setDateFormats()
         {
-            string format = "MM/dd/yyyy hh:mm";
+            string format = "MM/dd/yyyy hh:mm tt";
             startDatePicker.CustomFormat = format;
             endDatePicker.CustomFormat = format;
         }
@@ -78,20 +92,45 @@ namespace Software2.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            var updatedAppointment = createAppointment();
-            errorLabel.Text = "";
-            errorLabel.Hide();
-            try
+            if(editmode == (int)editMode.edit)
             {
-                validateAppointment(updatedAppointment);
-                _appointmentService.updateAppointment(updatedAppointment);
-            }
-            catch (Exception ex)
+                // Update
+                var updatedAppointment = createAppointment();
+                errorLabel.Text = "";
+                errorLabel.Hide();
+                try
+                {
+                    validateAppointment(updatedAppointment);
+                    _appointmentService.updateAppointment(updatedAppointment);
+
+                    AppointmentList appointmentList = new AppointmentList(this.username);
+                    appointmentList.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    errorLabel.Text = ex.Message;
+                    errorLabel.Show();
+                }
+            } else
             {
-                errorLabel.Text = ex.Message;
-                errorLabel.Show();
+                //Add
+                var appointmentToCreate = createAppointment();
+                try
+                {
+                    validateAppointment(appointmentToCreate);
+                    _appointmentService.addAppointment(appointmentToCreate);
+
+                    AppointmentList appointmentList = new AppointmentList(this.username);
+                    appointmentList.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    errorLabel.Text = ex.Message;
+                    errorLabel.Show();
+                }
             }
-            
             
         }
 
@@ -113,7 +152,12 @@ namespace Software2.Forms
 
         private appointment createAppointment()
         {
-            var appointment = _appointmentService.getAppointmentByID(id);
+            var appointment = new appointment();
+
+            if (editmode == (int)editMode.edit)
+            {
+                appointment = _appointmentService.getAppointmentByID(id);
+            }
             appointment.customerId = (int)customerComboBox.SelectedValue;
             appointment.title = nameTextBox.Text;
             appointment.description = descriptionTextBox.Text;

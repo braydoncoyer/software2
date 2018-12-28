@@ -22,7 +22,6 @@ namespace Software2.Repository
 
         public appointment getAppointmentByID(int id)
         {
-           
             return _db.appointments.FirstOrDefault(a => a.appointmentId == id);
         }
 
@@ -37,6 +36,11 @@ namespace Software2.Repository
             var appointmentToUpdate = getAppointmentByID(updatedAppointment.appointmentId);
             appointmentToUpdate = updatedAppointment;
             _db.SaveChanges();
+        }
+
+        public List<appointment> getAppointments()
+        {
+            return _db.appointments.ToList();
         }
 
         public void updateUser(user updateUser, int id)
@@ -55,6 +59,21 @@ namespace Software2.Repository
         {
             var _deleteUser = this.findUser(id);
             _db.users.Remove(_deleteUser);
+            _db.SaveChanges();
+        }
+
+        public void addAppointment(appointment appointment)
+        {
+            appointment.appointmentId = (_db.appointments.OrderByDescending(a => a.appointmentId).FirstOrDefault().appointmentId) + 1;
+            _db.appointments.Add(appointment);
+            _db.SaveChanges();
+        }
+
+        public void deleteAppointment(int appointmentID)
+        {
+            var appointment = getAppointmentByID(appointmentID);
+            _db.appointments.Remove(appointment);
+            _db.SaveChanges();
         }
     }
 }

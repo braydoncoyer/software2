@@ -13,10 +13,8 @@ namespace Software2.Forms
 {
     public partial class AppointmentList : Form
     {
-
         private string username;
         AppointmentService _service;
-
         public AppointmentList()
         {
             InitializeComponent();
@@ -31,7 +29,39 @@ namespace Software2.Forms
 
         private void AppointmentList_Load(object sender, EventArgs e)
         {
+            var appointments = new AppointmentService(username).getAppointmentDTOs();
+            appointmentTable.DataSource = appointments;
+        }
 
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            int selectedRow = appointmentTable.SelectedRows[0].Index;
+            int appointmentID = Convert.ToInt32(appointmentTable.Rows[selectedRow].Cells[appointmentTable.ColumnCount - 1].Value);
+            Appointments editAppointment = new Appointments(appointmentID, username);
+            editAppointment.Show();
+
+            this.Close();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Appointments addAppointment = new Appointments(this.username);
+            addAppointment.Show();
+            this.Close();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            int selectedRow = appointmentTable.SelectedRows[0].Index;
+            int appointmentID = Convert.ToInt32(appointmentTable.Rows[selectedRow].Cells[appointmentTable.ColumnCount - 1].Value);
+            _service.deleteAppointment(appointmentID);
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            Main mainForm = new Main(username);
+            mainForm.Show();
+            this.Close();
         }
     }
 }

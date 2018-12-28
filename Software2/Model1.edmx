@@ -155,6 +155,7 @@
           <Property Name="createdBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
           <Property Name="lastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="U04uzGModel.appointmentcustomer" FromRole="appointment" ToRole="customer" />
         </EntityType>
         <EntityType Name="city">
           <Key>
@@ -193,6 +194,7 @@
           <Property Name="lastUpdate" Type="DateTime" Nullable="false" />
           <Property Name="lastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="address" Relationship="U04uzGModel.customeraddress" FromRole="customer" ToRole="address" />
+          <NavigationProperty Name="appointments" Relationship="U04uzGModel.appointmentcustomer" FromRole="customer" ToRole="appointment" />
         </EntityType>
         <EntityType Name="incrementtype">
           <Key>
@@ -248,6 +250,10 @@
             <End Role="city" EntitySet="cities" />
             <End Role="country" EntitySet="countries" />
           </AssociationSet>
+          <AssociationSet Name="appointmentcustomer" Association="U04uzGModel.appointmentcustomer">
+            <End Role="appointment" EntitySet="appointments" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="customeraddress">
           <End Type="U04uzGModel.customer" Role="customer" Multiplicity="*" />
@@ -260,6 +266,18 @@
         <Association Name="citycountry">
           <End Type="U04uzGModel.city" Role="city" Multiplicity="*" />
           <End Type="U04uzGModel.country" Role="country" Multiplicity="1" />
+        </Association>
+        <Association Name="appointmentcustomer">
+          <End Type="U04uzGModel.appointment" Role="appointment" Multiplicity="*" />
+          <End Type="U04uzGModel.customer" Role="customer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>

@@ -14,6 +14,12 @@ namespace Software2
     
     public partial class customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public customer()
+        {
+            this.appointments = new HashSet<appointment>();
+        }
+    
         public int customerId { get; set; }
         public string customerName { get; set; }
         public bool active { get; set; }
@@ -23,5 +29,7 @@ namespace Software2
         public string lastUpdateBy { get; set; }
     
         public virtual address address { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<appointment> appointments { get; set; }
     }
 }

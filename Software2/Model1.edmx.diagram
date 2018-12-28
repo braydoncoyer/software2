@@ -16,6 +16,7 @@
         <AssociationConnector Association="U04uzGModel.customeraddress" />
         <AssociationConnector Association="U04uzGModel.addresscity" />
         <AssociationConnector Association="U04uzGModel.citycountry" />
+        <AssociationConnector Association="U04uzGModel.appointmentcustomer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

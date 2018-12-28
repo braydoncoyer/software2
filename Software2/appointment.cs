@@ -27,5 +27,7 @@ namespace Software2
         public string createdBy { get; set; }
         public System.DateTime lastUpdate { get; set; }
         public string lastUpdateBy { get; set; }
+    
+        public virtual customer customer { get; set; }
     }
 }
