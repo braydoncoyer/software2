@@ -29,6 +29,11 @@ namespace Software2.Forms
 
         private void CustomerList_Load(object sender, EventArgs e)
         {
+            populateCustomerDataGrid();
+        }
+
+        private void populateCustomerDataGrid()
+        {
             var customers = new CustomerService(username).getCustomerDTOs();
             customerTable.DataSource = customers;
         }
@@ -55,10 +60,18 @@ namespace Software2.Forms
         {
             int selectedRow = customerTable.SelectedRows[0].Index;
             int customerID = Convert.ToInt32(customerTable.Rows[selectedRow].Cells[customerTable.ColumnCount - 1].Value);
-            _service.deleteCustomer(customerID);
+            try
+            {
+                _service.deleteCustomer(customerID);
+                populateCustomerDataGrid();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Cannot Delete", MessageBoxButtons.OK);
 
-            // TODO: Figure out why form is not refreshing to see new udpated data.
-            this.Refresh();
+            }
+
+            
         }
 
         private void backButton_Click(object sender, EventArgs e)

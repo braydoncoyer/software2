@@ -64,6 +64,10 @@ namespace Software2.Forms
         internal void deleteCustomer(int customerID)
         {
             var customerToDelete = getCustomerByID(customerID);
+            if(customerToDelete.appointments.Count > 0)
+            {
+                throw new Exception("Cannot delete customer that is attached to an appointment");
+            }
             db.customers.Remove(customerToDelete);
             db.SaveChanges();
         }

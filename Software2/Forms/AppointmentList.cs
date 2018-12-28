@@ -29,6 +29,11 @@ namespace Software2.Forms
 
         private void AppointmentList_Load(object sender, EventArgs e)
         {
+            populateAppointmentDataGrid();
+        }
+
+        private void populateAppointmentDataGrid()
+        {
             var appointments = new AppointmentService(username).getAppointmentDTOs();
             appointmentTable.DataSource = appointments;
         }
@@ -55,6 +60,7 @@ namespace Software2.Forms
             int selectedRow = appointmentTable.SelectedRows[0].Index;
             int appointmentID = Convert.ToInt32(appointmentTable.Rows[selectedRow].Cells[appointmentTable.ColumnCount - 1].Value);
             _service.deleteAppointment(appointmentID);
+            populateAppointmentDataGrid();
         }
 
         private void backButton_Click(object sender, EventArgs e)
