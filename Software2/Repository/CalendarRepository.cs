@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Software2.Services;
 
 namespace Software2.Repository
 {
@@ -74,6 +75,13 @@ namespace Software2.Repository
             var appointment = getAppointmentByID(appointmentID);
             _db.appointments.Remove(appointment);
             _db.SaveChanges();
+        }
+
+        public List<AppointmentDate> getAllAppointmentDatesForAUser(string username)
+        {
+            var appointments = _db.appointments.Where(a => String.Equals(a.createdBy, username))
+                .Select(a => new AppointmentDate { Start = a.start, End = a.end, id = a.appointmentId }).ToList();
+            return appointments;
         }
     }
 }

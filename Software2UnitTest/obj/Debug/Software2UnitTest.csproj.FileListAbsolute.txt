@@ -1,0 +1,14 @@
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Software2UnitTest.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Software2UnitTest.pdb
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\obj\Debug\Software2UnitTest.csprojAssemblyReference.cache
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\obj\Debug\Software2UnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\obj\Debug\Software2UnitTest.csproj.CopyComplete
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\obj\Debug\Software2UnitTest.dll
+C:\Users\Braydon\Desktop\software2\software2\Software2UnitTest\obj\Debug\Software2UnitTest.pdb

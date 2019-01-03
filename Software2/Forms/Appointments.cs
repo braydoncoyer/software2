@@ -20,6 +20,8 @@ namespace Software2.Forms
         int id;
         private enum editMode { add = 0, edit = 1 };
         int editmode;
+        const int OPENTIME = 9;
+        const int CLOSETIME = 17;
 
         public Appointments(string username)
         {
@@ -100,7 +102,7 @@ namespace Software2.Forms
                 errorLabel.Hide();
                 try
                 {
-                    validateAppointment(updatedAppointment);
+                    validateAppointment(updatedAppointment, OPENTIME, CLOSETIME);
                     _appointmentService.updateAppointment(updatedAppointment);
 
                     AppointmentList appointmentList = new AppointmentList(this.username);
@@ -118,7 +120,7 @@ namespace Software2.Forms
                 var appointmentToCreate = createAppointment();
                 try
                 {
-                    validateAppointment(appointmentToCreate);
+                    validateAppointment(appointmentToCreate, OPENTIME, CLOSETIME);
                     _appointmentService.addAppointment(appointmentToCreate);
 
                     AppointmentList appointmentList = new AppointmentList(this.username);
@@ -134,20 +136,62 @@ namespace Software2.Forms
             
         }
 
-        private void validateAppointment(appointment appointment)
+        private void validateAppointment(appointment appointment, int opened, int closed)
         {
+            validateBusinessHours(appointment, opened, closed);
+            validateAppointmentTimes(appointment);
+            validateNoOverlappingAppointments(appointment);
+        }
 
-            int OPENED = 9;
-            int CLOSED = 17;
+        private void validateNoOverlappingAppointments(appointment appointment)
+        {
+            //Make Sure No Overlapping Schedules
+            var appointments = _appointmentService.getAllAppointmentDatesForAUser(this.username);
+            // Ensure that we get a list of appointments that EXCLUDES the current appointment if editing.
+            appointments = appointments.Where(a => a.id != appointment.appointmentId).ToList();
+
+            foreach (AppointmentDate a in appointments)
+            {
+
+                if (isDateBetween(a.Start, a.End, appointment.start) || isDateBetween(a.Start, a.End, appointment.end))
+                {
+                    throw new Exception("The date you've selected falls between a preexisting appointment");
+                }
+            }
+        }
+
+        private void validateAppointmentTimes(appointment appointment)
+        {
+            //Ensure that start hour is before the end hour
+            if (appointment.start.Hour > appointment.end.Hour)
+            {
+                throw new Exception("The starting time must be before the ending time");
+            }
+
+            //Ensure that days and years are valid
+
+            if (appointment.start.Day > appointment.end.Day || appointment.start.Year > appointment.end.Year)
+            {
+                throw new Exception("You cannot save appointments that start after the end date you've selected");
+            }
+        }
+
+        private void validateBusinessHours(appointment appointment, int opened, int closed)
+        {
             // Ensure during business hours
-            if (appointment.start.Hour < OPENED || appointment.end.Hour < OPENED)
+            if (appointment.start.Hour < opened || appointment.end.Hour < opened)
             {
                 throw new Exception("Must be between normal business hours");
             }
-            if (appointment.start.Hour > CLOSED || appointment.end.Hour > CLOSED)
+            if (appointment.start.Hour > closed || appointment.end.Hour > closed)
             {
                 throw new Exception("Must be between normal business hours");
             }
+        }
+
+        private bool isDateBetween(DateTime date1, DateTime date2, DateTime testDate)
+        {
+            return testDate.Ticks > date1.Ticks && testDate.Ticks < date2.Ticks;
         }
 
         private appointment createAppointment()
@@ -171,8 +215,8 @@ namespace Software2.Forms
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            Main mainForm = new Main(this.username);
-            mainForm.Show();
+            AppointmentList appointmentList = new AppointmentList(this.username);
+            appointmentList.Show();
             this.Close();
         }
     }

@@ -11,8 +11,8 @@ namespace Software2.DTO
         public string title { get; set; }
         public string description { get; set; }
         public string location { get; set; }
-        public string start { get; set; }
-        public string end { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
         public string customerName { get; set; }
         public int appointmentID { get; set; }
     }

@@ -51,8 +51,8 @@ namespace Software2.Services
             dto.title = a.title;
             dto.description = a.description;
             dto.customerName = a.customer.customerName;
-            dto.start = a.start.ToLongDateString();
-            dto.end = a.end.ToLongDateString() ;
+            dto.start = a.start;
+            dto.end = a.end;
             dto.location = a.location;
             return dto;
         }
@@ -70,6 +70,11 @@ namespace Software2.Services
         public void deleteAppointment(int appointmentID)
         {
             _repo.deleteAppointment(appointmentID);
+        }
+
+        public List<AppointmentDate> getAllAppointmentDatesForAUser(string username)
+        {
+            return _repo.getAllAppointmentDatesForAUser(username);
         }
     }
 }

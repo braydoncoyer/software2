@@ -33,6 +33,9 @@
             this.editButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.appointmentTable = new System.Windows.Forms.DataGridView();
+            this.selectionComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,19 +81,54 @@
             // 
             // appointmentTable
             // 
+            this.appointmentTable.AllowUserToAddRows = false;
+            this.appointmentTable.AllowUserToDeleteRows = false;
             this.appointmentTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.appointmentTable.Location = new System.Drawing.Point(31, 28);
+            this.appointmentTable.Location = new System.Drawing.Point(31, 68);
             this.appointmentTable.MultiSelect = false;
             this.appointmentTable.Name = "appointmentTable";
+            this.appointmentTable.ReadOnly = true;
             this.appointmentTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.appointmentTable.Size = new System.Drawing.Size(739, 335);
+            this.appointmentTable.Size = new System.Drawing.Size(739, 295);
             this.appointmentTable.TabIndex = 5;
+            // 
+            // selectionComboBox
+            // 
+            this.selectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.selectionComboBox.FormattingEnabled = true;
+            this.selectionComboBox.Location = new System.Drawing.Point(650, 41);
+            this.selectionComboBox.Name = "selectionComboBox";
+            this.selectionComboBox.Size = new System.Drawing.Size(120, 21);
+            this.selectionComboBox.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(597, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "View By";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(303, 22);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(171, 24);
+            this.titleLabel.TabIndex = 22;
+            this.titleLabel.Text = "APPOINTMENTS";
             // 
             // AppointmentList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.selectionComboBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.editButton);
@@ -101,6 +139,7 @@
             this.Load += new System.EventHandler(this.AppointmentList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.appointmentTable)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -111,5 +150,8 @@
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.DataGridView appointmentTable;
+        private System.Windows.Forms.ComboBox selectionComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleLabel;
     }
 }

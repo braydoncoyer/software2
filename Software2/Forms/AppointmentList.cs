@@ -35,7 +35,10 @@ namespace Software2.Forms
         private void populateAppointmentDataGrid()
         {
             var appointments = new AppointmentService(username).getAppointmentDTOs();
+            string dateFormat = "MM/dd/yyyy";
             appointmentTable.DataSource = appointments;
+            appointmentTable.Columns["start"].DefaultCellStyle.Format = dateFormat;
+            appointmentTable.Columns["end"].DefaultCellStyle.Format = dateFormat;
         }
 
         private void editButton_Click(object sender, EventArgs e)
