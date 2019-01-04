@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
@@ -36,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -114,6 +116,10 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,6 +151,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

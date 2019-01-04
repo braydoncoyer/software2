@@ -21,12 +21,16 @@ namespace Software2.Services
 
         public appointment getAppointmentByID(int id)
         {
-            return _repo.getAppointmentByID(id);
+            var appointment = _repo.getAppointmentByID(id);
+            convertAppointmentTimeToLocalTime(ref appointment);
+            return appointment;
         }
 
         public void updateAppointment(appointment updatedAppointment)
         {
             updatedAppointment.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
+            updatedAppointment.start = DateTimeMethods.ConvertToUniversalTime(updatedAppointment.start);
+            updatedAppointment.end = DateTimeMethods.ConvertToUniversalTime(updatedAppointment.end);
             updatedAppointment.lastUpdateBy = username;
 
             _repo.updateAppointment(updatedAppointment);
@@ -36,11 +40,15 @@ namespace Software2.Services
         {
             var appointments = _repo.getAppointments();
             List<appointmentDTO> appointmentDTOs = new List<appointmentDTO>();
-            foreach (var a in appointments)
+
+            for(var i = 0; i <= appointments.Count-1; i++)
             {
-                var dto = mapDTO(a);
+                var appointment = appointments[i];
+                convertAppointmentTimeToLocalTime(ref appointment);
+                var dto = mapDTO(appointment);
                 appointmentDTOs.Add(dto);
             }
+            
             return appointmentDTOs;
         }
 
@@ -61,6 +69,8 @@ namespace Software2.Services
         {
             appointmentToCreate.createDate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
             appointmentToCreate.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
+            appointmentToCreate.start = DateTimeMethods.ConvertToUniversalTime(appointmentToCreate.start);
+            appointmentToCreate.end = DateTimeMethods.ConvertToUniversalTime(appointmentToCreate.end);
             appointmentToCreate.createdBy = username;
             appointmentToCreate.lastUpdateBy = username;
 
@@ -74,7 +84,19 @@ namespace Software2.Services
 
         public List<AppointmentDate> getAllAppointmentDatesForAUser(string username)
         {
-            return _repo.getAllAppointmentDatesForAUser(username);
+            var allAppointments = _repo.getAllAppointmentDatesForAUser(username);
+            foreach(var a in allAppointments)
+            {
+                a.Start = a.Start.ToLocalTime();
+                a.End = a.End.ToLocalTime();
+            }
+            return allAppointments;
+        }
+
+        private void convertAppointmentTimeToLocalTime(ref appointment appointment)
+        {
+            appointment.start = appointment.start.ToLocalTime();
+            appointment.end = appointment.end.ToLocalTime();
         }
     }
 }
