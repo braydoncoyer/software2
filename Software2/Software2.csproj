@@ -88,6 +88,8 @@
     </Compile>
     <Compile Include="DTO\appointmentDTO.cs" />
     <Compile Include="DTO\customerDTO.cs" />
+    <Compile Include="Exceptions\appointmentException.cs" />
+    <Compile Include="Exceptions\CustomerExceptions.cs" />
     <Compile Include="Forms\AppointmentList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,5 +225,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

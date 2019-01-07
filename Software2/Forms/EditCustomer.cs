@@ -1,4 +1,5 @@
 ﻿using Software2.DTO;
+using Software2.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,6 +48,8 @@ namespace Software2.Forms
         private void EditCustomer_Load(object sender, EventArgs e)
         {
 
+            error.Hide();
+
             if (editmode == (int)editMode.edit)
             {
                 var customerDTO = _service.getCustomerByID(customerID);
@@ -74,21 +77,53 @@ namespace Software2.Forms
             customerDTO.country = countryTextBox.Text;
             customerDTO.zipcode = zipcodeTextBox.Text;
             customerDTO.phone = phoneTextBox.Text;
+            error.Text = "";
+            error.Hide();
 
-            if (editmode == (int)editMode.edit)
+            try
             {
-                customerDTO.id = customerID;
-                _service.updateCustomer(customerDTO);
+
+                validateCustomer();
+
+                if (editmode == (int)editMode.edit)
+                {
+                    customerDTO.id = customerID;
+                    _service.updateCustomer(customerDTO);
+                }
+                else
+                {
+                    _service.addCustomer(customerDTO);
+                }
+
+                CustomerList _customerList = new CustomerList(this.username);
+                _customerList.Show();
+                this.Close();
+
             }
-            else
+            catch (CustomerExceptions ex)
             {
-                _service.addCustomer(customerDTO);
+                error.Text = ex.Message;
+                error.Show();
             }
 
-            CustomerList _customerList = new CustomerList(this.username);
-            _customerList.Show();
-            this.Close();
+            
 
+            
+
+        }
+
+        private void validateCustomer()
+        {
+            if(string.IsNullOrWhiteSpace(nameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(address1TextBox.Text) ||
+                string.IsNullOrWhiteSpace(cityTextBox.Text) ||
+                string.IsNullOrWhiteSpace(countryTextBox.Text) ||
+                string.IsNullOrWhiteSpace(phoneTextBox.Text))
+
+            {
+                Console.WriteLine("Error");
+                throw new CustomerExceptions("Please ensure all fields are filled out and valid.");
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

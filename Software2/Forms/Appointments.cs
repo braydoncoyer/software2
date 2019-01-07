@@ -1,4 +1,5 @@
-﻿using Software2.Services;
+﻿using Software2.Exceptions;
+using Software2.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -109,7 +110,7 @@ namespace Software2.Forms
                     appointmentList.Show();
                     this.Close();
                 }
-                catch (Exception ex)
+                catch (appointmentException ex)
                 {
                     errorLabel.Text = ex.Message;
                     errorLabel.Show();
@@ -127,7 +128,7 @@ namespace Software2.Forms
                     appointmentList.Show();
                     this.Close();
                 }
-                catch (Exception ex)
+                catch (appointmentException ex)
                 {
                     errorLabel.Text = ex.Message;
                     errorLabel.Show();
@@ -138,9 +139,22 @@ namespace Software2.Forms
 
         private void validateAppointment(appointment appointment, int opened, int closed)
         {
+            validateFormFields();
             validateBusinessHours(appointment, opened, closed);
             validateAppointmentTimes(appointment);
             validateNoOverlappingAppointments(appointment);
+        }
+
+        private void validateFormFields()
+        {
+         if(string.IsNullOrWhiteSpace(nameTextBox.Text) ||
+               string.IsNullOrWhiteSpace(contactTextBox.Text) ||
+               string.IsNullOrWhiteSpace(locationTextBox.Text) ||
+               string.IsNullOrWhiteSpace(URLTextBox.Text) ||
+               string.IsNullOrWhiteSpace(descriptionTextBox.Text))
+            {
+                throw new appointmentException("Please check all required fields to ensure they are valid.");
+            }
         }
 
         private void validateNoOverlappingAppointments(appointment appointment)
@@ -155,7 +169,7 @@ namespace Software2.Forms
 
                 if (isDateBetween(a.Start, a.End, appointment.start) || isDateBetween(a.Start, a.End, appointment.end))
                 {
-                    throw new Exception("The date you've selected falls between a preexisting appointment");
+                    throw new appointmentException("The date you've selected falls between a preexisting appointment");
                 }
             }
         }
@@ -165,14 +179,14 @@ namespace Software2.Forms
             //Ensure that start hour is before the end hour
             if (appointment.start.Hour > appointment.end.Hour)
             {
-                throw new Exception("The starting time must be before the ending time");
+                throw new appointmentException("The starting time must be before the ending time");
             }
 
             //Ensure that days and years are valid
 
             if (appointment.start.Day > appointment.end.Day || appointment.start.Year > appointment.end.Year)
             {
-                throw new Exception("You cannot save appointments that start after the end date you've selected");
+                throw new appointmentException("You cannot save appointments that start after the end date you've selected");
             }
         }
 
@@ -181,11 +195,11 @@ namespace Software2.Forms
             // Ensure during business hours
             if (appointment.start.Hour < opened || appointment.end.Hour < opened)
             {
-                throw new Exception("Must be between normal business hours");
+                throw new appointmentException("Must be between normal business hours");
             }
             if (appointment.start.Hour > closed || appointment.end.Hour > closed)
             {
-                throw new Exception("Must be between normal business hours");
+                throw new appointmentException("Must be between normal business hours");
             }
         }
 
