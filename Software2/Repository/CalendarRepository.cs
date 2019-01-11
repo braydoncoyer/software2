@@ -23,7 +23,8 @@ namespace Software2.Repository
 
         public appointment getAppointmentByID(int id)
         {
-            return _db.appointments.FirstOrDefault(a => a.appointmentId == id);
+            var appointment = _db.appointments.FirstOrDefault(a => a.appointmentId == id);
+            return appointment;
         }
 
         public void addUser(user user)

@@ -44,7 +44,7 @@ namespace Software2.Forms
         private void editButton_Click(object sender, EventArgs e)
         {
             int selectedRow = appointmentTable.SelectedRows[0].Index;
-            int appointmentID = Convert.ToInt32(appointmentTable.Rows[selectedRow].Cells[appointmentTable.ColumnCount - 1].Value);
+            int appointmentID = Convert.ToInt32(appointmentTable.Rows[selectedRow].Cells[7].Value);
             Appointments editAppointment = new Appointments(appointmentID, username);
             editAppointment.Show();
 

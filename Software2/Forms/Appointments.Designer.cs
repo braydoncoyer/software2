@@ -48,6 +48,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.typeComboBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.appointmentIDTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -97,7 +100,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(426, 139);
+            this.label4.Location = new System.Drawing.Point(314, 139);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 10;
@@ -105,9 +108,9 @@
             // 
             // locationTextBox
             // 
-            this.locationTextBox.Location = new System.Drawing.Point(429, 161);
+            this.locationTextBox.Location = new System.Drawing.Point(317, 161);
             this.locationTextBox.Name = "locationTextBox";
-            this.locationTextBox.Size = new System.Drawing.Size(262, 20);
+            this.locationTextBox.Size = new System.Drawing.Size(143, 20);
             this.locationTextBox.TabIndex = 9;
             // 
             // label5
@@ -185,7 +188,7 @@
             // 
             this.contactTextBox.Location = new System.Drawing.Point(113, 161);
             this.contactTextBox.Name = "contactTextBox";
-            this.contactTextBox.Size = new System.Drawing.Size(262, 20);
+            this.contactTextBox.Size = new System.Drawing.Size(143, 20);
             this.contactTextBox.TabIndex = 21;
             // 
             // endDatePicker
@@ -225,11 +228,39 @@
             this.errorLabel.TabIndex = 25;
             this.errorLabel.Text = "label9";
             // 
+            // typeComboBox
+            // 
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeComboBox.FormattingEnabled = true;
+            this.typeComboBox.Location = new System.Drawing.Point(515, 161);
+            this.typeComboBox.Name = "typeComboBox";
+            this.typeComboBox.Size = new System.Drawing.Size(176, 21);
+            this.typeComboBox.TabIndex = 27;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(512, 139);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Type *";
+            // 
+            // appointmentIDTextBox
+            // 
+            this.appointmentIDTextBox.Location = new System.Drawing.Point(12, 12);
+            this.appointmentIDTextBox.Name = "appointmentIDTextBox";
+            this.appointmentIDTextBox.Size = new System.Drawing.Size(100, 20);
+            this.appointmentIDTextBox.TabIndex = 28;
+            // 
             // Appointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.appointmentIDTextBox);
+            this.Controls.Add(this.typeComboBox);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -280,5 +311,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.ComboBox typeComboBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox appointmentIDTextBox;
     }
 }

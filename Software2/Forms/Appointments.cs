@@ -1,4 +1,5 @@
-﻿using Software2.Exceptions;
+﻿using Software2.DTO;
+using Software2.Exceptions;
 using Software2.Services;
 using System;
 using System.Collections.Generic;
@@ -55,15 +56,22 @@ namespace Software2.Forms
             errorLabel.Hide();
             setCustomerCombo();
             setDateFormats();
+            setTypeCombo();
             if (editmode == (int)editMode.edit)
             {
-                var appointment = _appointmentService.getAppointmentByID(id);
+                var appointment = _appointmentService.getAppointmentDTOByID(id);
                 setElements(appointment);
             }
             else
             {
                 titleLabel.Text = "Add Appointment".ToUpper();
             }
+        }
+
+        private void setTypeCombo()
+        {
+            //todo: alphabet
+            typeComboBox.DataSource = new string[] { "Meeting", "Follow Up", "Lunch", "Other" };
         }
 
         private void setCustomerCombo()
@@ -81,16 +89,18 @@ namespace Software2.Forms
             endDatePicker.CustomFormat = format;
         }
 
-        private void setElements(appointment appointment)
+        private void setElements(appointmentDTO appointment)
         {
             nameTextBox.Text = appointment.title;
             customerComboBox.SelectedValue = appointment.customerId;
+            typeComboBox.Text = appointment.type;
             contactTextBox.Text = appointment.contact;
             locationTextBox.Text = appointment.location;
             URLTextBox.Text = appointment.url;
             descriptionTextBox.Text = appointment.description;
             startDatePicker.Value = appointment.start;
             endDatePicker.Value = appointment.end;
+            appointmentIDTextBox.Text = appointment.appointmentID.ToString();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -104,7 +114,7 @@ namespace Software2.Forms
                 try
                 {
                     validateAppointment(updatedAppointment, OPENTIME, CLOSETIME);
-                    _appointmentService.updateAppointment(updatedAppointment);
+                    _appointmentService.updateAppointmentDTO(updatedAppointment);
 
                     AppointmentList appointmentList = new AppointmentList(this.username);
                     appointmentList.Show();
@@ -122,7 +132,7 @@ namespace Software2.Forms
                 try
                 {
                     validateAppointment(appointmentToCreate, OPENTIME, CLOSETIME);
-                    _appointmentService.addAppointment(appointmentToCreate);
+                    _appointmentService.addAppointmentDTO(appointmentToCreate);
 
                     AppointmentList appointmentList = new AppointmentList(this.username);
                     appointmentList.Show();
@@ -137,12 +147,12 @@ namespace Software2.Forms
             
         }
 
-        private void validateAppointment(appointment appointment, int opened, int closed)
+        private void validateAppointment(appointmentDTO _appointmentDTO, int opened, int closed)
         {
             validateFormFields();
-            validateBusinessHours(appointment, opened, closed);
-            validateAppointmentTimes(appointment);
-            validateNoOverlappingAppointments(appointment);
+            validateBusinessHours(_appointmentDTO, opened, closed);
+            validateAppointmentTimes(_appointmentDTO);
+            validateNoOverlappingAppointments(_appointmentDTO);
         }
 
         private void validateFormFields()
@@ -157,47 +167,47 @@ namespace Software2.Forms
             }
         }
 
-        private void validateNoOverlappingAppointments(appointment appointment)
+        private void validateNoOverlappingAppointments(appointmentDTO _appointmentDTO)
         {
             //Make Sure No Overlapping Schedules
             var appointments = _appointmentService.getAllAppointmentDatesForAUser(this.username);
             // Ensure that we get a list of appointments that EXCLUDES the current appointment if editing.
-            appointments = appointments.Where(a => a.id != appointment.appointmentId).ToList();
+            appointments = appointments.Where(a => a.id != _appointmentDTO.appointmentID).ToList();
 
             foreach (AppointmentDate a in appointments)
             {
 
-                if (isDateBetween(a.Start, a.End, appointment.start) || isDateBetween(a.Start, a.End, appointment.end))
+                if (isDateBetween(a.Start, a.End, _appointmentDTO.start) || isDateBetween(a.Start, a.End, _appointmentDTO.end))
                 {
                     throw new appointmentException("The date you've selected falls between a preexisting appointment");
                 }
             }
         }
 
-        private void validateAppointmentTimes(appointment appointment)
+        private void validateAppointmentTimes(appointmentDTO _appointmentDTO)
         {
             //Ensure that start hour is before the end hour
-            if (appointment.start.Hour > appointment.end.Hour)
+            if (_appointmentDTO.start.Hour > _appointmentDTO.end.Hour)
             {
                 throw new appointmentException("The starting time must be before the ending time");
             }
 
             //Ensure that days and years are valid
 
-            if (appointment.start.Day > appointment.end.Day || appointment.start.Year > appointment.end.Year)
+            if (_appointmentDTO.start.Day > _appointmentDTO.end.Day || _appointmentDTO.start.Year > _appointmentDTO.end.Year)
             {
                 throw new appointmentException("You cannot save appointments that start after the end date you've selected");
             }
         }
 
-        private void validateBusinessHours(appointment appointment, int opened, int closed)
+        private void validateBusinessHours(appointmentDTO _appointmentDTO, int opened, int closed)
         {
             // Ensure during business hours
-            if (appointment.start.Hour < opened || appointment.end.Hour < opened)
+            if (_appointmentDTO.start.Hour < opened || _appointmentDTO.end.Hour < opened)
             {
                 throw new appointmentException("Must be between normal business hours");
             }
-            if (appointment.start.Hour > closed || appointment.end.Hour > closed)
+            if (_appointmentDTO.start.Hour > closed || _appointmentDTO.end.Hour > closed)
             {
                 throw new appointmentException("Must be between normal business hours");
             }
@@ -208,23 +218,24 @@ namespace Software2.Forms
             return testDate.Ticks > date1.Ticks && testDate.Ticks < date2.Ticks;
         }
 
-        private appointment createAppointment()
+        private appointmentDTO createAppointment()
         {
-            var appointment = new appointment();
+            var appointmentDTO = new appointmentDTO();
 
-            if (editmode == (int)editMode.edit)
-            {
-                appointment = _appointmentService.getAppointmentByID(id);
-            }
-            appointment.customerId = (int)customerComboBox.SelectedValue;
-            appointment.title = nameTextBox.Text;
-            appointment.description = descriptionTextBox.Text;
-            appointment.location = locationTextBox.Text;
-            appointment.contact = contactTextBox.Text;
-            appointment.url = URLTextBox.Text;
-            appointment.start = startDatePicker.Value;
-            appointment.end = endDatePicker.Value;
-            return appointment;
+            //if (editmode == (int)editMode.edit)
+            //{
+            //    appointmentDTO = _appointmentService.getAppointmentDTOByID(id);
+            //}
+            appointmentDTO.appointmentID = Convert.ToInt32(appointmentIDTextBox.Text);
+            appointmentDTO.customerId = (int)customerComboBox.SelectedValue;
+            appointmentDTO.title = nameTextBox.Text;
+            appointmentDTO.description = descriptionTextBox.Text;
+            appointmentDTO.location = locationTextBox.Text;
+            appointmentDTO.contact = contactTextBox.Text;
+            appointmentDTO.url = URLTextBox.Text;
+            appointmentDTO.start = startDatePicker.Value;
+            appointmentDTO.end = endDatePicker.Value;
+            return appointmentDTO;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

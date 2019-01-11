@@ -11,7 +11,7 @@ namespace Software2.Services
 {
     public class AppointmentService
     {
-        CalendarRepository _repo = new CalendarRepository();
+        //CalendarRepository _repo = new CalendarRepository();
         string username;
 
         public AppointmentService(string username)
@@ -19,25 +19,52 @@ namespace Software2.Services
             this.username = username;
         }
 
-        public appointment getAppointmentByID(int id)
+        public appointmentDTO getAppointmentDTOByID(int id)
         {
+            var _repo = new CalendarRepository();
             var appointment = _repo.getAppointmentByID(id);
             convertAppointmentTimeToLocalTime(ref appointment);
-            return appointment;
+            var dto = mapDTO(appointment);
+            return dto;
         }
 
-        public void updateAppointment(appointment updatedAppointment)
+        public void updateAppointmentDTO(appointmentDTO dto)
         {
+            var _repo = new CalendarRepository();
+            string concatTitle = concatTitleFromTypeAndTitle(dto);
+            var updatedAppointment = _repo.getAppointmentByID(dto.appointmentID);
+            updatedAppointment = mapDTOToAppointment(dto, concatTitle, updatedAppointment);
             updatedAppointment.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
             updatedAppointment.start = DateTimeMethods.ConvertToUniversalTime(updatedAppointment.start);
             updatedAppointment.end = DateTimeMethods.ConvertToUniversalTime(updatedAppointment.end);
             updatedAppointment.lastUpdateBy = username;
-
             _repo.updateAppointment(updatedAppointment);
+
+        }
+
+        private appointment mapDTOToAppointment(appointmentDTO dto, string concatTitle, appointment appointment)
+        {
+            appointment.title = concatTitle;
+            appointment.appointmentId = dto.appointmentID;
+            appointment.contact = dto.contact;
+            appointment.customerId = dto.customerId;
+            appointment.description = dto.description;
+            appointment.end = dto.end;
+            appointment.location = dto.location;
+            appointment.start = dto.start;
+            appointment.url = dto.url;
+            return appointment;
+        }
+
+        private string concatTitleFromTypeAndTitle(appointmentDTO dto)
+        {
+            string concat;
+            return concat = dto.title + "|" + dto.type;
         }
 
         public List<appointmentDTO> getAppointmentDTOs()
         {
+            var _repo = new CalendarRepository();
             var appointments = _repo.getAppointments();
             List<appointmentDTO> appointmentDTOs = new List<appointmentDTO>();
 
@@ -54,14 +81,25 @@ namespace Software2.Services
 
         public appointmentDTO mapDTO(appointment a)
         {
-            var dto = new appointmentDTO();
+            var dto = setDTOTitleAndType(a);
             dto.appointmentID = a.appointmentId;
-            dto.title = a.title;
             dto.description = a.description;
             dto.customerName = a.customer.customerName;
-            dto.start = a.start;
-            dto.end = a.end;
+            dto.start = a.start.ToLocalTime();
+            dto.end = a.end.ToLocalTime();
             dto.location = a.location;
+            dto.url = a.url;
+            dto.contact = a.contact;
+            dto.customerId = a.customerId;
+            return dto;
+        }
+
+        private appointmentDTO setDTOTitleAndType(appointment appointment)
+        {
+            string[] splitCharacters = appointment.title.Split('|');
+            appointmentDTO dto = new appointmentDTO();
+            dto.title = splitCharacters[0];
+            dto.type = splitCharacters[1];
             return dto;
         }
 
@@ -74,16 +112,36 @@ namespace Software2.Services
             appointmentToCreate.createdBy = username;
             appointmentToCreate.lastUpdateBy = username;
 
+            var _repo = new CalendarRepository();
             _repo.addAppointment(appointmentToCreate);
+        }
+
+        public void addAppointmentDTO(appointmentDTO appointmentDTO)
+        {
+            string concatTitle = concatTitleFromTypeAndTitle(appointmentDTO);
+            var appointment = new appointment();
+            appointment = mapDTOToAppointment(appointmentDTO, concatTitle, appointment);
+
+            appointment.createDate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
+            appointment.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now);
+            appointment.start = DateTimeMethods.ConvertToUniversalTime(appointment.start);
+            appointment.end = DateTimeMethods.ConvertToUniversalTime(appointment.end);
+            appointment.createdBy = username;
+            appointment.lastUpdateBy = username;
+
+            var _repo = new CalendarRepository();
+            _repo.addAppointment(appointment);
         }
 
         public void deleteAppointment(int appointmentID)
         {
+            var _repo = new CalendarRepository();
             _repo.deleteAppointment(appointmentID);
         }
 
         public List<AppointmentDate> getAllAppointmentDatesForAUser(string username)
         {
+            var _repo = new CalendarRepository();
             var allAppointments = _repo.getAllAppointmentDatesForAUser(username);
             foreach(var a in allAppointments)
             {
@@ -97,6 +155,14 @@ namespace Software2.Services
         {
             appointment.start = appointment.start.ToLocalTime();
             appointment.end = appointment.end.ToLocalTime();
+        }
+
+        public appointment getAppointmentByID(int id)
+        {
+            var _repo = new CalendarRepository();
+            var appointment = _repo.getAppointmentByID(id);
+            // convertAppointmentTimeToLocalTime(ref appointment);
+            return appointment;
         }
     }
 }

@@ -9,11 +9,15 @@ namespace Software2.DTO
     public class appointmentDTO
     {
         public string title { get; set; }
+        public string type { get; set; }
         public string description { get; set; }
         public string location { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
         public string customerName { get; set; }
         public int appointmentID { get; set; }
+        public int customerId { get; set; }
+        public string url { get; set; }
+        public string contact { get; set; }
     }
 }
