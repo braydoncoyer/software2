@@ -42,6 +42,23 @@ namespace Software2.Services
 
         }
 
+        public List<appointmentDTO> getAppointmentDTOsByMonth(int month)
+        {
+            var _repo = new CalendarRepository();
+            var appointments = _repo.getAppointmentsByMonth(month, username);
+            List<appointmentDTO> appointmentDTOs = new List<appointmentDTO>();
+
+            for (var i = 0; i <= appointments.Count - 1; i++)
+            {
+                var appointment = appointments[i];
+                convertAppointmentTimeToLocalTime(ref appointment);
+                var dto = mapDTO(appointment);
+                appointmentDTOs.Add(dto);
+            }
+
+            return appointmentDTOs;
+        }
+
         private appointment mapDTOToAppointment(appointmentDTO dto, string concatTitle, appointment appointment)
         {
             appointment.title = concatTitle;

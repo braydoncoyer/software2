@@ -223,11 +223,11 @@ namespace Software2.Forms
         {
             var appointmentDTO = new appointmentDTO();
 
-            //if (editmode == (int)editMode.edit)
-            //{
-            //    appointmentDTO = _appointmentService.getAppointmentDTOByID(id);
-            //}
-            appointmentDTO.appointmentID = Convert.ToInt32(appointmentIDTextBox.Text);
+            if (editmode == (int)editMode.edit)
+            {
+                appointmentDTO.appointmentID = Convert.ToInt32(appointmentIDTextBox.Text);
+            }
+            
             appointmentDTO.customerId = (int)customerComboBox.SelectedValue;
             appointmentDTO.title = nameTextBox.Text;
             appointmentDTO.description = descriptionTextBox.Text;

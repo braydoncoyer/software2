@@ -34,7 +34,7 @@ namespace Software2.Forms
 
         private void populateAppointmentDataGrid()
         {
-            var appointments = new AppointmentService(username).getAppointmentDTOs();
+            var appointments = new AppointmentService(username).getAppointmentDTOsByMonth(DateTime.Now.Month);
             string dateFormat = "MM/dd/yyyy";
             appointmentTable.DataSource = appointments;
             appointmentTable.Columns["start"].DefaultCellStyle.Format = dateFormat;

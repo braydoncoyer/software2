@@ -64,6 +64,12 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
+        public List<appointment> getAppointmentsByMonth(int month, string username)
+        {
+            var appointments = _db.appointments.Where(a => (a.start.Month == month || a.end.Month == month) && String.Equals(a.createdBy, username));
+            return appointments.ToList();
+        }
+
         public void addAppointment(appointment appointment)
         {
             appointment.appointmentId = (_db.appointments.OrderByDescending(a => a.appointmentId).FirstOrDefault().appointmentId) + 1;
