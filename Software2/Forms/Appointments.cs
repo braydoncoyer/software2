@@ -101,6 +101,7 @@ namespace Software2.Forms
             startDatePicker.Value = appointment.start;
             endDatePicker.Value = appointment.end;
             appointmentIDTextBox.Text = appointment.appointmentID.ToString();
+            appointmentIDTextBox.Visible = false;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -108,7 +109,7 @@ namespace Software2.Forms
             if(editmode == (int)editMode.edit)
             {
                 // Update
-                var updatedAppointment = createAppointment();
+                var updatedAppointment = createAppointmentDTO();
                 errorLabel.Text = "";
                 errorLabel.Hide();
                 try
@@ -128,7 +129,7 @@ namespace Software2.Forms
             } else
             {
                 //Add
-                var appointmentToCreate = createAppointment();
+                var appointmentToCreate = createAppointmentDTO();
                 try
                 {
                     validateAppointment(appointmentToCreate, OPENTIME, CLOSETIME);
@@ -218,7 +219,7 @@ namespace Software2.Forms
             return testDate.Ticks > date1.Ticks && testDate.Ticks < date2.Ticks;
         }
 
-        private appointmentDTO createAppointment()
+        private appointmentDTO createAppointmentDTO()
         {
             var appointmentDTO = new appointmentDTO();
 
@@ -235,6 +236,7 @@ namespace Software2.Forms
             appointmentDTO.url = URLTextBox.Text;
             appointmentDTO.start = startDatePicker.Value;
             appointmentDTO.end = endDatePicker.Value;
+            appointmentDTO.type = typeComboBox.Text;
             return appointmentDTO;
         }
 
