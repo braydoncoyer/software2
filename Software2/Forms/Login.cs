@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
 
 namespace Software2
 {
@@ -34,6 +35,7 @@ namespace Software2
             try
             {
                 _userSerivce.login(usernameTextBox.Text, passwordTextBox.Text);
+                writeToUserLoginFile();
                 Main form = new Main(usernameTextBox.Text);
                 this.Hide();
                 form.Show();
@@ -43,6 +45,17 @@ namespace Software2
                 errorLabel.Text = ex.Message;
                 errorLabel.Show();
             }
+        }
+
+        private void writeToUserLoginFile()
+        {
+            string fileName = string.Format("{0}/UserLoginRecord.txt", Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            StreamWriter objWriter = File.AppendText(fileName);
+
+            DateTime loginTime = DateTime.Now;
+
+            objWriter.WriteLine(String.Format("{0} logged in on {1} at {2}", usernameTextBox.Text, loginTime.ToShortDateString(), loginTime.ToShortTimeString()));
+            objWriter.Close();
         }
 
         private void exitButton_Click(object sender, EventArgs e)

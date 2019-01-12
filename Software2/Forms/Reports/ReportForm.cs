@@ -98,7 +98,6 @@ namespace Software2.Forms.Reports
         private void mapCustomerTextBox()
         {
             var appointments = _appointmentService.getAllAppointmentsForACustomer(dataID);
-            Console.WriteLine("Inside map Customer");
 
             foreach(var a in appointments)
             {

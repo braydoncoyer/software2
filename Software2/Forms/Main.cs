@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Software2
     public partial class Main : Form
     {
         string username;
+
         public Main()
         {
             InitializeComponent();
@@ -45,6 +47,10 @@ namespace Software2
             ReportSelect reportSelectForm = new ReportSelect(username);
             reportSelectForm.Show();
             this.Close();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
         }
     }
 }
