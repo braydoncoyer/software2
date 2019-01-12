@@ -19,7 +19,7 @@ namespace Software2.Forms
             return db.customers.ToList();
         }
 
-        public customer getCustomerByID(int customerID)
+        public customer getCustomerDTOByID(int customerID)
         {
             return db.customers.FirstOrDefault(c => c.customerId == customerID);
         }
@@ -27,7 +27,7 @@ namespace Software2.Forms
         public void updateCustomer(customer updatedCustomer)
         {
             updatedCustomer.lastUpdate = DateTime.Now;
-            var oldCustomer = this.getCustomerByID(updatedCustomer.customerId);
+            var oldCustomer = this.getCustomerDTOByID(updatedCustomer.customerId);
             oldCustomer = updatedCustomer;
             db.SaveChanges();
         }
@@ -63,7 +63,7 @@ namespace Software2.Forms
 
         internal void deleteCustomer(int customerID)
         {
-            var customerToDelete = getCustomerByID(customerID);
+            var customerToDelete = getCustomerDTOByID(customerID);
             if(customerToDelete.appointments.Count > 0)
             {
                 throw new Exception("Cannot delete customer that is attached to an appointment");
@@ -93,6 +93,12 @@ namespace Software2.Forms
             newCustomer.createdBy = this.username;
             db.customers.Add(newCustomer);
             db.SaveChanges();
+        }
+
+        public string getCustomerNameByID(int dataID)
+        {
+            var customer = db.customers.FirstOrDefault(c => c.customerId == dataID);
+            return customer.customerName;
         }
     }
 }

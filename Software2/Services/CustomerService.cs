@@ -45,16 +45,16 @@ namespace Software2.Forms
             return dto;
         }
 
-        public customerDTO getCustomerByID(int customerID)
+        public customerDTO getCustomerDTOByID(int customerID)
         {
-            var customer = _repo.getCustomerByID(customerID);
+            var customer = _repo.getCustomerDTOByID(customerID);
             var dto = mapDTO(customer);
             return dto;
         }
 
         public void updateCustomer(customerDTO customerDTO)
         {
-            var updatedCustomer = _repo.getCustomerByID(customerDTO.id);
+            var updatedCustomer = _repo.getCustomerDTOByID(customerDTO.id);
             updatedCustomer = checkAddressForUpdates(customerDTO, updatedCustomer);
             updatedCustomer.customerName = customerDTO.name;
             updatedCustomer.lastUpdateBy = this.username;
@@ -91,6 +91,11 @@ namespace Software2.Forms
             }
 
             return updatedCustomer;
+        }
+
+        public string getCustomerNameByID(int dataID)
+        {
+            return _repo.getCustomerNameByID(dataID);
         }
 
         public void addCustomer(customerDTO customerDTO)

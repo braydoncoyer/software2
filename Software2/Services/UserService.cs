@@ -87,5 +87,10 @@ namespace Software2.Services
                 throw new Exception("The password was incorrect");;
             }
         }
+
+        public string getUserNameByID(int dataID)
+        {
+            return _repo.getUserNameByID(dataID);
+        }
     }
 }

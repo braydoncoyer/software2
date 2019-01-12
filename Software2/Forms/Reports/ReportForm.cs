@@ -21,6 +21,7 @@ namespace Software2.Forms.Reports
         DateTime monthData;
         AppointmentService _appointmentService;
         CustomerService _customerService;
+        UserService _userService;
 
         public ReportForm()
         {
@@ -47,6 +48,7 @@ namespace Software2.Forms.Reports
             setFormMode(mode);
             _appointmentService = new AppointmentService(this.username);
             _customerService = new CustomerService(this.username);
+            _userService = new UserService();
         }
 
         private void setFormMode(int mode)
@@ -72,7 +74,8 @@ namespace Software2.Forms.Reports
 
         private void ReportForm_Load(object sender, EventArgs e)
         {
-            if(formmode == (int)formMode.consultant)
+            infoTextBox.ReadOnly = true;
+            if (formmode == (int)formMode.consultant)
             {
                 mapConsultantTextBox();
             }
@@ -94,12 +97,29 @@ namespace Software2.Forms.Reports
 
         private void mapCustomerTextBox()
         {
-            //var appointments = _appointmentService.getAllAppointmentDatesForAUser(_customerService.getCustomerByID(dataID));
+            var appointments = _appointmentService.getAllAppointmentDatesForAUser(_customerService.getCustomerNameByID(dataID));
+            Console.WriteLine("Inside map Custoner");
+            var text = "HOWDY!";
+
+            foreach(var a in appointments)
+            {
+                infoTextBox.Text += Environment.NewLine + text;
+
+            }
         }
 
         private void mapConsultantTextBox()
         {
-            throw new NotImplementedException();
+            var appointments = _appointmentService.getAllAppointmentsForAUser(_userService.getUserNameByID(dataID));
+
+            foreach (var a in appointments)
+            {
+                infoTextBox.Text += Environment.NewLine;
+                infoTextBox.Text += Environment.NewLine;
+                infoTextBox.Text += Environment.NewLine + a.title;
+                infoTextBox.Text += Environment.NewLine + "Start:" + a.start;
+                infoTextBox.Text += Environment.NewLine + "End" + a.end;
+            }
         }
 
         private void backButton_Click(object sender, EventArgs e)

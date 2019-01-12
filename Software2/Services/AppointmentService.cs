@@ -96,6 +96,7 @@ namespace Software2.Services
             return appointmentDTOs;
         }
 
+
         public appointmentDTO mapDTO(appointment a)
         {
             var dto = setDTOTitleAndType(a);
@@ -165,6 +166,13 @@ namespace Software2.Services
                 a.Start = a.Start.ToLocalTime();
                 a.End = a.End.ToLocalTime();
             }
+            return allAppointments;
+        }
+
+        public List<appointment> getAllAppointmentsForAUser(string username)
+        {
+            var _repo = new CalendarRepository();
+            var allAppointments = _repo.getallAppointmentsForAUser(username);
             return allAppointments;
         }
 

@@ -84,11 +84,23 @@ namespace Software2.Repository
             _db.SaveChanges();
         }
 
+        public string getUserNameByID(int dataID)
+        {
+            var user = _db.users.FirstOrDefault(u => u.userId == dataID);
+            return user.userName;
+        }
+
         public List<AppointmentDate> getAllAppointmentDatesForAUser(string username)
         {
             var appointments = _db.appointments.Where(a => String.Equals(a.createdBy, username))
                 .Select(a => new AppointmentDate { Start = a.start, End = a.end, id = a.appointmentId }).ToList();
             return appointments;
+        }
+
+        public List<appointment> getallAppointmentsForAUser(string username)
+        {
+            var appointments = _db.appointments.Where(a => String.Equals(a.createdBy, username));
+            return appointments.ToList();
         }
     }
 }

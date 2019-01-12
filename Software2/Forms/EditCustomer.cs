@@ -52,7 +52,7 @@ namespace Software2.Forms
 
             if (editmode == (int)editMode.edit)
             {
-                var customerDTO = _service.getCustomerByID(customerID);
+                var customerDTO = _service.getCustomerDTOByID(customerID);
                 nameTextBox.Text = customerDTO.name;
                 address1TextBox.Text = customerDTO.address1;
                 address2TextBox.Text = customerDTO.address2;
