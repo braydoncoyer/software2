@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.customerButton = new System.Windows.Forms.Button();
             this.appointmentButton = new System.Windows.Forms.Button();
+            this.reportsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +56,7 @@
             // customerButton
             // 
             this.customerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerButton.Location = new System.Drawing.Point(250, 276);
+            this.customerButton.Location = new System.Drawing.Point(250, 210);
             this.customerButton.Name = "customerButton";
             this.customerButton.Size = new System.Drawing.Size(329, 37);
             this.customerButton.TabIndex = 2;
@@ -66,7 +67,7 @@
             // appointmentButton
             // 
             this.appointmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appointmentButton.Location = new System.Drawing.Point(250, 348);
+            this.appointmentButton.Location = new System.Drawing.Point(250, 282);
             this.appointmentButton.Name = "appointmentButton";
             this.appointmentButton.Size = new System.Drawing.Size(329, 37);
             this.appointmentButton.TabIndex = 3;
@@ -74,11 +75,23 @@
             this.appointmentButton.UseVisualStyleBackColor = true;
             this.appointmentButton.Click += new System.EventHandler(this.appointmentButton_Click);
             // 
+            // reportsButton
+            // 
+            this.reportsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportsButton.Location = new System.Drawing.Point(250, 352);
+            this.reportsButton.Name = "reportsButton";
+            this.reportsButton.Size = new System.Drawing.Size(329, 37);
+            this.reportsButton.TabIndex = 4;
+            this.reportsButton.Text = "Reports";
+            this.reportsButton.UseVisualStyleBackColor = true;
+            this.reportsButton.Click += new System.EventHandler(this.reportsButton_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 529);
+            this.Controls.Add(this.reportsButton);
             this.Controls.Add(this.appointmentButton);
             this.Controls.Add(this.customerButton);
             this.Controls.Add(this.label2);
@@ -96,5 +109,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button customerButton;
         private System.Windows.Forms.Button appointmentButton;
+        private System.Windows.Forms.Button reportsButton;
     }
 }

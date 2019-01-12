@@ -1,4 +1,5 @@
 ﻿using Software2.Forms;
+using Software2.Forms.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,13 @@ namespace Software2
         {
             AppointmentList listForm = new AppointmentList(username);
             listForm.Show();
+            this.Close();
+        }
+
+        private void reportsButton_Click(object sender, EventArgs e)
+        {
+            ReportSelect reportSelectForm = new ReportSelect(username);
+            reportSelectForm.Show();
             this.Close();
         }
     }
