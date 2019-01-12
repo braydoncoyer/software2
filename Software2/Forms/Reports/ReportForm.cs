@@ -97,13 +97,17 @@ namespace Software2.Forms.Reports
 
         private void mapCustomerTextBox()
         {
-            var appointments = _appointmentService.getAllAppointmentDatesForAUser(_customerService.getCustomerNameByID(dataID));
-            Console.WriteLine("Inside map Custoner");
-            var text = "HOWDY!";
+            var appointments = _appointmentService.getAllAppointmentsForACustomer(dataID);
+            Console.WriteLine("Inside map Customer");
 
             foreach(var a in appointments)
             {
-                infoTextBox.Text += Environment.NewLine + text;
+                infoTextBox.Text += Environment.NewLine;
+                infoTextBox.Text += Environment.NewLine;
+                infoTextBox.Text += Environment.NewLine + a.title;
+                infoTextBox.Text += Environment.NewLine + "Customer: " + a.customer.customerName;
+                infoTextBox.Text += Environment.NewLine + "Start: " + a.start;
+                infoTextBox.Text += Environment.NewLine + "End: " + a.end;
 
             }
         }
@@ -117,8 +121,8 @@ namespace Software2.Forms.Reports
                 infoTextBox.Text += Environment.NewLine;
                 infoTextBox.Text += Environment.NewLine;
                 infoTextBox.Text += Environment.NewLine + a.title;
-                infoTextBox.Text += Environment.NewLine + "Start:" + a.start;
-                infoTextBox.Text += Environment.NewLine + "End" + a.end;
+                infoTextBox.Text += Environment.NewLine + "Start: " + a.start;
+                infoTextBox.Text += Environment.NewLine + "End: " + a.end;
             }
         }
 

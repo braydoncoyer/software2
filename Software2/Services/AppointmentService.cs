@@ -182,6 +182,13 @@ namespace Software2.Services
             appointment.end = appointment.end.ToLocalTime();
         }
 
+        public List<appointment> getAllAppointmentsForACustomer(int customerID)
+        {
+            var _repo = new CalendarRepository();
+            var allAppointments = _repo.getAllAppointmentsForACustomer(customerID);
+            return allAppointments;
+        }
+
         public appointment getAppointmentByID(int id)
         {
             var _repo = new CalendarRepository();

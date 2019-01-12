@@ -102,5 +102,11 @@ namespace Software2.Repository
             var appointments = _db.appointments.Where(a => String.Equals(a.createdBy, username));
             return appointments.ToList();
         }
+
+        public List<appointment> getAllAppointmentsForACustomer(int customerID)
+        {
+            var appointments = _db.appointments.Where(a => a.customerId == customerID);
+            return appointments.ToList();
+        }
     }
 }
