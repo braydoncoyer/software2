@@ -193,7 +193,36 @@ namespace Software2.Services
         {
             var _repo = new CalendarRepository();
             var appointment = _repo.getAppointmentByID(id);
-            // convertAppointmentTimeToLocalTime(ref appointment);
+            return appointment;
+        }
+
+        public List<AppointmentTypeCount> GetAppointmentTypeAndCountByMonth(int month)
+        {
+            var _repo = new CalendarRepository();
+            var appointments = _repo.getAppointmentsByMonth(month, username);
+
+            foreach (var a in appointments)
+            {
+                string[] typeAndTitle = a.title.Split('|');
+                a.title = typeAndTitle[1];
+            }
+
+            var appointmentsWithTypeAndCount = appointments.GroupBy(a => a.title)
+                .Select(b => new AppointmentTypeCount
+                { Type = b.First().title, Count = b.Count() }
+                );
+
+            return appointmentsWithTypeAndCount.ToList();
+        }
+
+        public appointment getAppointmentsComingUp()
+        {
+            var _repo = new CalendarRepository();
+            var appointments = _repo.getallAppointmentsForAUser(username);
+            var appointment = appointments.Where
+                (a => a.start.AddMinutes(-15) <= DateTime.Now
+                && a.end > DateTime.Now)
+                .FirstOrDefault();
             return appointment;
         }
     }

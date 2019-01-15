@@ -92,7 +92,17 @@ namespace Software2.Forms.Reports
 
         private void mapAppointmentTextBox()
         {
-            throw new NotImplementedException();
+            var appointments = _appointmentService.GetAppointmentTypeAndCountByMonth(dataID);
+
+            foreach (var a in appointments)
+            {
+                infoTextBox.Text += Environment.NewLine;
+                infoTextBox.Text += Environment.NewLine;
+                infoTextBox.Text += Environment.NewLine + a.Type;
+                infoTextBox.Text += Environment.NewLine + "Count: " + a.Count;
+
+            }
+
         }
 
         private void mapCustomerTextBox()

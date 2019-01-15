@@ -116,7 +116,7 @@ namespace Software2.Forms.Reports
             }
             else
             {
-                reportForm = new ReportForm(username, formmode, startDatePicker.Value);
+                reportForm = new ReportForm(username, formmode, startDatePicker.Value.Month);
             }
 
             reportForm.Show();

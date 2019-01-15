@@ -1,5 +1,6 @@
 ﻿using Software2.Forms;
 using Software2.Forms.Reports;
+using Software2.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,12 @@ namespace Software2
 
         private void Main_Load(object sender, EventArgs e)
         {
+            var _appointmentService = new AppointmentService(this.username);
+            var upcomingAppointment = _appointmentService.getAppointmentsComingUp();
+            if(upcomingAppointment != null)
+            {
+                MessageBox.Show(upcomingAppointment.title + " is coming up at " + upcomingAppointment.start);
+            }
         }
     }
 }
