@@ -88,6 +88,11 @@
     </Compile>
     <Compile Include="DTO\appointmentDTO.cs" />
     <Compile Include="DTO\customerDTO.cs" />
+    <Compile Include="es-lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>es-lang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Exceptions\appointmentException.cs" />
     <Compile Include="Exceptions\CustomerExceptions.cs" />
     <Compile Include="Forms\AppointmentList.cs">
@@ -179,6 +184,10 @@
     <Compile Include="user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="es-lang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>es-lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AppointmentList.resx">
       <DependentUpon>AppointmentList.cs</DependentUpon>
     </EmbeddedResource>
