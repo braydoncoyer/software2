@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.customerButton = new System.Windows.Forms.Button();
             this.appointmentButton = new System.Windows.Forms.Button();
             this.reportsButton = new System.Windows.Forms.Button();
+            this.reminderTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -86,6 +88,11 @@
             this.reportsButton.UseVisualStyleBackColor = true;
             this.reportsButton.Click += new System.EventHandler(this.reportsButton_Click);
             // 
+            // reminderTimer
+            // 
+            this.reminderTimer.Interval = 35000;
+            this.reminderTimer.Tick += new System.EventHandler(this.reminderTimer_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,5 +118,6 @@
         private System.Windows.Forms.Button customerButton;
         private System.Windows.Forms.Button appointmentButton;
         private System.Windows.Forms.Button reportsButton;
+        private System.Windows.Forms.Timer reminderTimer;
     }
 }

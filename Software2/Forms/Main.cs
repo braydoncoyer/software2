@@ -40,23 +40,44 @@ namespace Software2
         {
             AppointmentList listForm = new AppointmentList(username);
             listForm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void reportsButton_Click(object sender, EventArgs e)
         {
             ReportSelect reportSelectForm = new ReportSelect(username);
             reportSelectForm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
+            checkForAppointmentAlarmOnLogin();
+            reminderTimer.Start();
+        }
+
+        private void checkForAppointmentAlarmOnLogin()
+        {
             var _appointmentService = new AppointmentService(this.username);
             var upcomingAppointment = _appointmentService.getAppointmentsComingUp();
-            if(upcomingAppointment != null)
+            if (upcomingAppointment != null)
             {
                 MessageBox.Show(upcomingAppointment.title + " is coming up at " + upcomingAppointment.start);
+            }
+        }
+
+        private void reminderTimer_Tick(object sender, EventArgs e)
+        {
+            checkForAppointmentAlarmsComingUp();
+        }
+
+        private void checkForAppointmentAlarmsComingUp()
+        {
+            var _appointmentService = new AppointmentService(this.username);
+            var upcomingAppointment = _appointmentService.getAppointmentsWithin15Minutes();
+            if (upcomingAppointment != null)
+            {
+                MessageBox.Show(upcomingAppointment.title + " is coming up in 15 minutes");
             }
         }
     }

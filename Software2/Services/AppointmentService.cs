@@ -225,5 +225,17 @@ namespace Software2.Services
                 .FirstOrDefault();
             return appointment;
         }
+
+        public appointment getAppointmentsWithin15Minutes()
+        {
+            var _repo = new CalendarRepository();
+            var appointments = _repo.getallAppointmentsForAUser(username);
+            var now = DateTime.Now;
+            var appointment = appointments.Where(
+                a => a.start.ToLocalTime().AddMinutes(-15).Subtract(now).Duration().Minutes == TimeSpan.FromMinutes(0).Minutes &&
+                a.start.ToLocalTime().AddMinutes(-15).Minute == now.Minute
+                ).FirstOrDefault();
+            return appointment;
+        }
     }
 }
