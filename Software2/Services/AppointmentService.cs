@@ -220,11 +220,17 @@ namespace Software2.Services
             var _repo = new CalendarRepository();
             var appointments = _repo.getallAppointmentsForAUser(username);
             var appointment = appointments.Where
-                (a => a.start.ToLocalTime().AddMinutes(-15) <= DateTime.Now
-                && a.end.ToLocalTime() > DateTime.Now)
-                .FirstOrDefault();
-            var dto = mapDTO(appointment);
-            return dto;
+                (a => a.start.ToLocalTime().AddMinutes(-15) <= DateTime.Now && a.start.ToLocalTime() > DateTime.Now).FirstOrDefault();
+            //&& a.end.ToLocalTime() > DateTime.Now)
+            //.FirstOrDefault();
+            var dto = new appointmentDTO();
+            if(appointment != null)
+            {
+                dto = mapDTO(appointment);
+                return dto;
+            }
+            
+            return null;
         }
 
         public appointmentDTO getAppointmentsWithin15Minutes()
