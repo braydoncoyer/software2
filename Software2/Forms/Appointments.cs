@@ -54,6 +54,7 @@ namespace Software2.Forms
         private void Appointments_Load(object sender, EventArgs e)
         {
             errorLabel.Hide();
+            appointmentIDTextBox.Hide();
             setCustomerCombo();
             setDateFormats();
             setTypeCombo();

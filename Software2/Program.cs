@@ -10,8 +10,6 @@ namespace Software2
     static class Program
     {
 
-        private static Container container;
-
         [STAThread]
         static void Main()
         {
