@@ -215,18 +215,19 @@ namespace Software2.Services
             return appointmentsWithTypeAndCount.ToList();
         }
 
-        public appointment getAppointmentsComingUp()
+        public appointmentDTO getAppointmentsComingUp()
         {
             var _repo = new CalendarRepository();
             var appointments = _repo.getallAppointmentsForAUser(username);
             var appointment = appointments.Where
-                (a => a.start.AddMinutes(-15) <= DateTime.Now
-                && a.end > DateTime.Now)
+                (a => a.start.ToLocalTime().AddMinutes(-15) <= DateTime.Now
+                && a.end.ToLocalTime() > DateTime.Now)
                 .FirstOrDefault();
-            return appointment;
+            var dto = mapDTO(appointment);
+            return dto;
         }
 
-        public appointment getAppointmentsWithin15Minutes()
+        public appointmentDTO getAppointmentsWithin15Minutes()
         {
             var _repo = new CalendarRepository();
             var appointments = _repo.getallAppointmentsForAUser(username);
@@ -235,7 +236,8 @@ namespace Software2.Services
                 a => a.start.ToLocalTime().AddMinutes(-15).Subtract(now).Duration().Minutes == TimeSpan.FromMinutes(0).Minutes &&
                 a.start.ToLocalTime().AddMinutes(-15).Minute == now.Minute
                 ).FirstOrDefault();
-            return appointment;
+            var dto = mapDTO(appointment);
+            return dto;
         }
     }
 }
