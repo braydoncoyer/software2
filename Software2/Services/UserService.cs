@@ -16,8 +16,8 @@ namespace Software2.Services
 
         public user findUser(int id)
         {
-           var _user = _repo.findUser(id);
-            if(_user == null)
+            var _user = _repo.findUser(id);
+            if (_user == null)
             {
                 throw new Exception("That user could not be found");
             }
@@ -34,7 +34,7 @@ namespace Software2.Services
 
         public user findByUsername(String username)
         {
-            if(username == null)
+            if (username == null)
             {
                 throw new Exception("Please enter a username");
             }
@@ -48,10 +48,10 @@ namespace Software2.Services
         public void addUser(user user)
         {
             user _existingUser = _repo.findByUsername(user.userName);
-            if(_existingUser == null)
+            if (_existingUser == null)
             {
                 //checks for required fields
-                if(user.userName == null || user.password == null)
+                if (user.userName == null || user.password == null)
                 {
                     user.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now); ;
                     _repo.addUser(user);
@@ -75,16 +75,20 @@ namespace Software2.Services
 
         public void login(String username, String password)
         {
+            
+
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password))
+            {
+                throw new Exception("Username and password are required");
+            }
+
             user _loginUser = _repo.findByUsername(username);
 
+
             //Login
-            if (_loginUser == null)
+            if (_loginUser == null || !_loginUser.password.Equals(password))
             {
-                throw new Exception("The username is incorrect.");
-            }
-            else if(_loginUser.password != password)
-            {
-                throw new Exception("The password was incorrect");;
+                throw new Exception("Username or password incorrect");
             }
         }
 

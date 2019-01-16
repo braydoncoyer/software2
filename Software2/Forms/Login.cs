@@ -42,9 +42,26 @@ namespace Software2
             }
             catch (Exception ex)
             {
-                errorLabel.Text = ex.Message;
-                errorLabel.Show();
+                showErrors(ex);
             }
+        }
+
+        private void showErrors(Exception ex)
+        {
+            var lang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            var message = ex.Message;
+            if (lang == "es")
+            {
+                List<string> messageWords = message.Split(' ').ToList();
+                message = String.Empty;
+                messageWords.ForEach(word =>
+                {
+                    message += es_lang.ResourceManager.GetString(word) + ' ';
+                });
+            }
+
+            errorLabel.Text = message;
+            errorLabel.Show();
         }
 
         private void writeToUserLoginFile()
