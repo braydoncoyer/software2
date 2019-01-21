@@ -15,6 +15,6 @@ namespace Software2.DTO
             public string country { get; set; }
             public string zipcode { get; set; }
             public string phone { get; set; }
-        public int id { get; internal set; }
+            public int id { get; internal set; }
     }
 }

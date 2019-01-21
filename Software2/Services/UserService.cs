@@ -61,7 +61,6 @@ namespace Software2.Services
 
         public void updateUser(user updateUser, int id)
         {
-            //Add checks for required fields?
 
             updateUser.lastUpdate = DateTimeMethods.ConvertToUniversalTime(DateTime.Now); ;
             _repo.updateUser(updateUser, id);
@@ -69,7 +68,6 @@ namespace Software2.Services
 
         public void deleteUser(int id)
         {
-            //Does this user have appointments made? Perhaps you cannot delete user if they have appointments made
             _repo.deleteUser(id);
         }
 

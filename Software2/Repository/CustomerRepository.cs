@@ -50,6 +50,7 @@ namespace Software2.Forms
         {
             city newCity = new city();
             newCity.city1 = city;
+            // This lambda finds the largest cityID in the table, and adds 1 to it to create a new city ID for this city.
             newCity.cityId = (db.cities.OrderByDescending(c => c.cityId).FirstOrDefault().cityId) + 1;
             newCity.createDate = DateTime.Now;
             newCity.createdBy = this.username;

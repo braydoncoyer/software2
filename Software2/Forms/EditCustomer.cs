@@ -105,11 +105,6 @@ namespace Software2.Forms
                 error.Text = ex.Message;
                 error.Show();
             }
-
-            
-
-            
-
         }
 
         private void validateCustomer()

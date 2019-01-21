@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,22 @@ namespace Software2.Repository
             return appointments.ToList();
         }
 
+        public List<appointment> getAppointmentsByWeek(int weekNum, string username)
+        {
+            CultureInfo ciCurr = CultureInfo.CurrentCulture;
+            var appointments = getallAppointmentsForAUser(username);
+            List<appointment> appointmentsThisWeek = new List<appointment>();
+            
+            for (var i = 0; i < appointments.Count; i ++)
+            {
+                if(ciCurr.Calendar.GetWeekOfYear(appointments[i].start, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday) == weekNum)
+                {
+                    appointmentsThisWeek.Add(appointments[i]);
+                }
+            }
+            return appointmentsThisWeek.ToList();
+        }
+
         public void addAppointment(appointment appointment)
         {
             appointment.appointmentId = (_db.appointments.OrderByDescending(a => a.appointmentId).FirstOrDefault().appointmentId) + 1;
@@ -92,6 +109,7 @@ namespace Software2.Repository
 
         public List<AppointmentDate> getAllAppointmentDatesForAUser(string username)
         {
+            // This lambda finds all appointments that were created by the current logged in user.
             var appointments = _db.appointments.Where(a => String.Equals(a.createdBy, username))
                 .Select(a => new AppointmentDate { Start = a.start, End = a.end, id = a.appointmentId }).ToList();
             return appointments;

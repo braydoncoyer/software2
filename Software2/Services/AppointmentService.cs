@@ -3,6 +3,7 @@ using Software2.Repository;
 using Software2.SharedMethods;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ namespace Software2.Services
 {
     public class AppointmentService
     {
-        //CalendarRepository _repo = new CalendarRepository();
         string username;
 
         public AppointmentService(string username)
@@ -40,6 +40,26 @@ namespace Software2.Services
             updatedAppointment.lastUpdateBy = username;
             _repo.updateAppointment(updatedAppointment);
 
+        }
+
+        public List<appointmentDTO> getAppointmentDTOsByWeek()
+        {
+            var _repo = new CalendarRepository();
+            CultureInfo ciCurr = CultureInfo.CurrentCulture;
+            int weekNum = ciCurr.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            Console.WriteLine(weekNum);
+            List<appointmentDTO> appointmentDTOs = new List<appointmentDTO>();
+            var appointments = _repo.getAppointmentsByWeek(weekNum, username);
+            
+            for (var i = 0; i <= appointments.Count - 1; i++)
+            {
+                var appointment = appointments[i];
+                convertAppointmentTimeToLocalTime(ref appointment);
+                var dto = mapDTO(appointment);
+                appointmentDTOs.Add(dto);
+            }
+
+            return appointmentDTOs;
         }
 
         public List<appointmentDTO> getAppointmentDTOsByMonth(int month)
@@ -221,8 +241,7 @@ namespace Software2.Services
             var appointments = _repo.getallAppointmentsForAUser(username);
             var appointment = appointments.Where
                 (a => a.start.ToLocalTime().AddMinutes(-15) <= DateTime.Now && a.start.ToLocalTime() > DateTime.Now).FirstOrDefault();
-            //&& a.end.ToLocalTime() > DateTime.Now)
-            //.FirstOrDefault();
+
             var dto = new appointmentDTO();
             if(appointment != null)
             {
@@ -238,12 +257,19 @@ namespace Software2.Services
             var _repo = new CalendarRepository();
             var appointments = _repo.getallAppointmentsForAUser(username);
             var now = DateTime.Now;
+            // The following lambda allows me to find an appointment, from the current user logged in, that is coming up in the next 15 minutes.
+            // In order to do this, I need to subtract 15 mintues from now which takes into account date, day, hour, minute, seconds, etc.
             var appointment = appointments.Where(
                 a => a.start.ToLocalTime().AddMinutes(-15).Subtract(now).Duration().Minutes == TimeSpan.FromMinutes(0).Minutes &&
                 a.start.ToLocalTime().AddMinutes(-15).Minute == now.Minute
                 ).FirstOrDefault();
-            var dto = mapDTO(appointment);
-            return dto;
+            var dto = new appointmentDTO();
+            if(appointment != null)
+            {
+                dto = mapDTO(appointment);
+                return dto;
+            }
+            return null;
         }
     }
 }

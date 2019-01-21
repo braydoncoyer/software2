@@ -70,8 +70,7 @@ namespace Software2.Forms
                 MessageBox.Show(ex.Message, "Cannot Delete", MessageBoxButtons.OK);
 
             }
-
-            
+ 
         }
 
         private void backButton_Click(object sender, EventArgs e)

@@ -195,7 +195,6 @@ namespace Software2.Forms
             }
 
             //Ensure that days and years are valid
-
             if (_appointmentDTO.start.Day > _appointmentDTO.end.Day || _appointmentDTO.start.Year > _appointmentDTO.end.Year)
             {
                 throw new appointmentException("You cannot save appointments that start after the end date you've selected");

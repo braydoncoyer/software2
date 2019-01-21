@@ -1,4 +1,5 @@
-﻿using Software2.Services;
+﻿using Software2.DTO;
+using Software2.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,12 +30,24 @@ namespace Software2.Forms
 
         private void AppointmentList_Load(object sender, EventArgs e)
         {
+            string[] comboOptions = new string[] { "Month", "Week" };
+            viewByComboBox.DataSource = comboOptions;
+            viewByComboBox.Text = "Month";
+            this.viewByComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             populateAppointmentDataGrid();
         }
 
         private void populateAppointmentDataGrid()
         {
-            var appointments = new AppointmentService(username).getAppointmentDTOsByMonth(DateTime.Now.Month);
+            List<appointmentDTO> appointments = new List<appointmentDTO>();
+            if(String.Equals(viewByComboBox.Text, "Month"))
+            {
+                appointments = new AppointmentService(username).getAppointmentDTOsByMonth(DateTime.Now.Month);
+            } else if(String.Equals(viewByComboBox.Text, "Week"))
+            {
+                appointments = new AppointmentService(username).getAppointmentDTOsByWeek();
+            }
+
             string dateFormat = "MM/dd/yyyy";
             appointmentTable.DataSource = appointments;
             appointmentTable.Columns["start"].DefaultCellStyle.Format = dateFormat;
@@ -71,6 +84,12 @@ namespace Software2.Forms
             Main mainForm = new Main(username);
             mainForm.Show();
             this.Close();
+        }
+
+        private void viewByButton_Click(object sender, EventArgs e)
+        {
+            populateAppointmentDataGrid();
+            Console.WriteLine(viewByComboBox.SelectedValue);
         }
     }
 }
